@@ -1,0 +1,172 @@
+﻿
+@model IEnumerable<foodfun.Models.Products>
+@using foodfun.Models;
+
+@{
+
+    ViewBag.Title = "產品列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string cate_no = ViewBag.CategoryNo;
+    string cate_name = ViewBag.CategoryName;
+    List<Categorys> categorys = new List<Categorys>();
+    categorys = Shop.GetCategarysIsSale();
+}
+
+
+
+<section class="popular-items latest-padding">
+    <div class="container">
+
+
+        @*=========分類列表=========*@
+
+        <div class="row product-btn justify-content-between mb-40">
+            <div class="properties__button">
+                <!--Nav Button  -->
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link bg-danger mx-2" id="nav-home-tab" @*data-toggle="tab"*@ href="/Product/CategoryList/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
+                        @foreach (var item in categorys)
+                        {
+                            @*@Html.ActionLink(@item.category_name, "CategoryList","Product",new {id = @item.category_no},new {@class= "nav-item nav-link" , data_toggle = "tab" } )*@
+                            <a class="nav-item nav-link bg-danger mx-2" href="/Product/CategoryList/@item.category_no">@item.category_name</a>
+                        }
+                    </div>
+
+                </nav>
+
+                <!--End Nav Button  -->
+            </div>
+        </div>
+
+
+        @*=========商品==========*@
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        string img_path = Shop.GetProductImage(item.product_no,item.category_no);
+
+                        <!-- card one -->
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-popular-items mb-50 text-center">
+                                <div class="popular-img">
+                                    <img src="@img_path" alt="">
+                                    <div class="img-cap">
+                                        <span>
+                                            @*@Html.ActionLink("Add to cart", "ProductDetail", "Products", new { id = item.product_no }, new { @class = "text-light" })*@
+                                            <a href="" class="text-light">Add to cart  </a>
+                                        </span>
+                                    </div>
+                                    <div class="favorit-items">
+                                        <span class="flaticon-heart"></span>
+                                    </div>
+                                </div>
+                                <div class="popular-caption">
+
+
+                                    <h3>
+                                        <a data-toggle="modal" data-target="#@item.product_no">@Html.DisplayFor(modelItem => item.product_name)</a>
+                                    </h3>
+                                    <span>@Html.DisplayFor(modelItem => item.price_sale)</span>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        //=========================modal======================
+
+                        using (Html.BeginForm())
+                        {
+                            Html.AntiForgeryToken();
+                            <div class="modal fade" id="@item.product_no" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content product_image_area">
+
+                                        <input type="hidden" id="product_no" name="product_no" value="@item.product_no">
+                                        <input type="hidden" id="category_no" name="category_no" value="">
+                                        <div>
+                                            <img src="@img_path" alt="" class="card-img-top p-2">
+
+                                        </div>
+                                        <div class="modal-header text-center">
+                                            <h3 class="modal-title " id="exampleModalLongTitle">@item.product_name</h3>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="product_image_area">
+                                                <div class="container">
+                                                    <div class="row justify-content-center">
+
+                                                        <div class="col-lg-8">
+                                                            <div class="single_product_text text-center">
+                                                                <p>
+                                                                    Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources.
+                                                                </p>
+                                                                <div class="pruduct_property">
+
+
+                                                                    @{List<SelectListItem> lists = Shop.GetPropertyList(item.product_no);}
+
+                                                                    @if (lists != null)
+                                                                    {
+
+                                                                        foreach (var item1 in lists)
+                                                                        {
+
+                                                                            <div class="section">
+                                                                                <div>
+                                                                                    <span class="product-detail-label control-label">@item1.Text</span>
+
+                                                                                    @{
+                                                                                        List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split(',').ToList();
+                                                                                        foreach (var value in prop_values)
+                                                                                        {
+                                                                                            @Html.RadioButton(@item1.Value, @value) @Html.Label(item1.Value, @value)
+
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                                <div class="card_area">
+                                                                    <div class="product_count_area">
+                                                                        <p>Quantity</p>
+                                                                        <div class="product_count d-inline-block">
+                                                                            <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                                                            <input id="qty" name="qty" class="product_count_item input-number" type="text" value="1" min="0" max="10">
+                                                                            <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                                                                        </div>
+                                                                        <p>@item.price_sale</p>
+                                                                    </div>
+                                                                    <div class="add_to_cart">
+                                                                        <input type="submit" value="加入購物車" class="btn_3" />
+                                                                        @*<a href="#" class="btn_3">add to cart</a>*@
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        //=========================modal end======================
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Button trigger modal -->
