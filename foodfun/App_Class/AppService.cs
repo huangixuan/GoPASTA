@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using foodfun.Models;
 
 /// <summary>
 /// 應用程式服務類別
@@ -34,4 +35,33 @@ public static class AppService
             return (str_value == "1");
         }
     }
+
+
+    /// <summary>
+    /// 後台套版
+    /// </summary>
+    public static List<ProgramList> GetModuleList()
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            return db.ProgramList
+                .Where(m => m.parentid == 0)
+                .OrderBy(m => m.pro_no)
+                .ToList();
+        }
+
+    }
+    public static List<ProgramList> GetProgramLists(int parentID)
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            return db.ProgramList
+                .Where(m => m.parentid == parentID)
+                .OrderBy(m => m.pro_no)
+                .ToList();
+        }
+
+    }
+
+
 }

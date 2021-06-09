@@ -139,6 +139,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -172,6 +174,7 @@
     </Compile>
     <Compile Include="Models\MetaData\Orders.cs" />
     <Compile Include="Models\MetaData\Products.cs" />
+    <Compile Include="Models\MetaData\ProgramList.cs" />
     <Compile Include="Models\MetaData\Users.cs" />
     <Compile Include="Models\MetaData\Carts.cs" />
     <Compile Include="Models\Orders.cs">
@@ -187,6 +190,9 @@
       <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductsProperty.cs">
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgramList.cs">
       <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Propertys.cs">
@@ -216,6 +222,90 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminBack\assets\css\cs-skin-elastic.css" />
+    <Content Include="AdminBack\assets\css\lib\chosen\chosen-sprite%402x.png" />
+    <Content Include="AdminBack\assets\css\lib\chosen\chosen-sprite.png" />
+    <Content Include="AdminBack\assets\css\lib\chosen\chosen.css" />
+    <Content Include="AdminBack\assets\css\lib\chosen\chosen.min.css" />
+    <Content Include="AdminBack\assets\css\lib\datatable\buttons.bootstrap.min.css" />
+    <Content Include="AdminBack\assets\css\lib\datatable\buttons.dataTables.min.css" />
+    <Content Include="AdminBack\assets\css\lib\datatable\dataTables.bootstrap.min.css" />
+    <Content Include="AdminBack\assets\css\lib\vector-map\jqvmap.min.css" />
+    <Content Include="AdminBack\assets\css\style.css" />
+    <Content Include="AdminBack\assets\fonts\icomoon\icomoon.svg" />
+    <Content Include="AdminBack\assets\fonts\icomoon\index.html" />
+    <Content Include="AdminBack\assets\js\dashboard.js" />
+    <Content Include="AdminBack\assets\js\init\chartjs-init.js" />
+    <Content Include="AdminBack\assets\js\init\datatables-init.js" />
+    <Content Include="AdminBack\assets\js\init\flot-chart-init.js" />
+    <Content Include="AdminBack\assets\js\init\fullcalendar-init.js" />
+    <Content Include="AdminBack\assets\js\init\gmap-init.js" />
+    <Content Include="AdminBack\assets\js\init\peitychart-init.js" />
+    <Content Include="AdminBack\assets\js\init\vector-init.js" />
+    <Content Include="AdminBack\assets\js\init\weather-init.js" />
+    <Content Include="AdminBack\assets\js\lib\chosen\chosen.jquery.js" />
+    <Content Include="AdminBack\assets\js\lib\chosen\chosen.jquery.min.js" />
+    <Content Include="AdminBack\assets\js\lib\chosen\chosen.proto.js" />
+    <Content Include="AdminBack\assets\js\lib\chosen\chosen.proto.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\buttons.bootstrap.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\buttons.colVis.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\buttons.flash.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\buttons.html5.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\buttons.print.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\dataTables.bootstrap.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\dataTables.buttons.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\datatables.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\jquery-1.12.4.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\jquery.dataTables.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\jszip.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\pdfmake.min.js" />
+    <Content Include="AdminBack\assets\js\lib\data-table\vfs_fonts.js" />
+    <Content Include="AdminBack\assets\js\lib\gmap\gmapApi.js" />
+    <Content Include="AdminBack\assets\js\lib\gmap\gmaps.js" />
+    <Content Include="AdminBack\assets\js\lib\gmap\gmaps.min.js" />
+    <Content Include="AdminBack\assets\js\main.js" />
+    <Content Include="AdminBack\assets\js\vmap.sampledata.js" />
+    <Content Include="AdminBack\assets\js\widgets.js" />
+    <Content Include="AdminBack\assets\scss\style.css" />
+    <Content Include="AdminBack\charts-chartjs.html" />
+    <Content Include="AdminBack\charts-flot.html" />
+    <Content Include="AdminBack\charts-peity.html" />
+    <Content Include="AdminBack\font-fontawesome.html" />
+    <Content Include="AdminBack\font-themify.html" />
+    <Content Include="AdminBack\forms-advanced.html" />
+    <Content Include="AdminBack\forms-basic.html" />
+    <Content Include="AdminBack\images\.gitignore" />
+    <Content Include="AdminBack\images\admin.jpg" />
+    <Content Include="AdminBack\images\avatar\1.jpg" />
+    <Content Include="AdminBack\images\avatar\2.jpg" />
+    <Content Include="AdminBack\images\avatar\3.jpg" />
+    <Content Include="AdminBack\images\avatar\4.jpg" />
+    <Content Include="AdminBack\images\avatar\5.jpg" />
+    <Content Include="AdminBack\images\avatar\6.jpg" />
+    <Content Include="AdminBack\images\avatar\64-1.jpg" />
+    <Content Include="AdminBack\images\avatar\64-2.jpg" />
+    <Content Include="AdminBack\images\favicon.png" />
+    <Content Include="AdminBack\images\logo.png" />
+    <Content Include="AdminBack\images\logo2.png" />
+    <Content Include="AdminBack\index.html" />
+    <Content Include="AdminBack\maps-gmap.html" />
+    <Content Include="AdminBack\maps-vector.html" />
+    <Content Include="AdminBack\page-login.html" />
+    <Content Include="AdminBack\page-register.html" />
+    <Content Include="AdminBack\pages-forget.html" />
+    <Content Include="AdminBack\tables-basic.html" />
+    <Content Include="AdminBack\tables-data.html" />
+    <Content Include="AdminBack\ui-alerts.html" />
+    <Content Include="AdminBack\ui-badges.html" />
+    <Content Include="AdminBack\ui-buttons.html" />
+    <Content Include="AdminBack\ui-cards.html" />
+    <Content Include="AdminBack\ui-grids.html" />
+    <Content Include="AdminBack\ui-modals.html" />
+    <Content Include="AdminBack\ui-progressbar.html" />
+    <Content Include="AdminBack\ui-switches.html" />
+    <Content Include="AdminBack\ui-tabs.html" />
+    <Content Include="AdminBack\ui-typgraphy.html" />
+    <Content Include="AdminBack\widgets.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -319,6 +409,17 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="AdminBack\.github\ISSUE_TEMPLATE.md" />
+    <Content Include="AdminBack\assets\css\style.css.map" />
+    <Content Include="AdminBack\assets\fonts\icomoon\icomoon.eot" />
+    <Content Include="AdminBack\assets\fonts\icomoon\icomoon.ttf" />
+    <Content Include="AdminBack\assets\fonts\icomoon\icomoon.woff" />
+    <Content Include="AdminBack\assets\scss\style.css.map" />
+    <Content Include="AdminBack\assets\scss\style.scss" />
+    <Content Include="AdminBack\images\logo.psd" />
+    <Content Include="AdminBack\README.md" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -738,9 +839,12 @@
     <Content Include="Views\CheckOut\MealService.cshtml" />
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
