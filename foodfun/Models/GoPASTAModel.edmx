@@ -119,6 +119,15 @@
           <Property Name="product_no" Type="nvarchar" MaxLength="50" />
           <Property Name="Property_no" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ProgramList">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentid" Type="int" />
+          <Property Name="pro_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="pro_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Propertys">
           <Key>
             <PropertyRef Name="rowid" />
@@ -207,6 +216,7 @@
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductsProperty" EntityType="Self.ProductsProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramList" EntityType="Self.ProgramList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Propertys" EntityType="Self.Propertys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -259,6 +269,7 @@
           <EntitySet Name="sysdiagrams" EntityType="GoPASTAModel.sysdiagrams" />
           <EntitySet Name="Users" EntityType="GoPASTAModel.Users" />
           <EntitySet Name="Carts" EntityType="GoPASTAModel.Carts" />
+          <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -418,6 +429,15 @@
           <Property Name="qty" Type="Int32" />
           <Property Name="create_time" Type="DateTime" Precision="3" />
           <Property Name="each_item_amount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProgramList">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -605,6 +625,16 @@
                 <ScalarProperty Name="product_no" ColumnName="product_no" />
                 <ScalarProperty Name="mno" ColumnName="mno" />
                 <ScalarProperty Name="cart_lotno" ColumnName="cart_lotno" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramList">
+            <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
+              <MappingFragment StoreEntitySet="ProgramList">
+                <ScalarProperty Name="pro_name" ColumnName="pro_name" />
+                <ScalarProperty Name="pro_no" ColumnName="pro_no" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
