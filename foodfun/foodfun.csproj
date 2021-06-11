@@ -180,6 +180,9 @@
     <Compile Include="Models\Orders.cs">
       <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrdersDetails.cs">
+      <DependentUpon>GoPASTAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OrderStatus.cs">
       <DependentUpon>GoPASTAModel.tt</DependentUpon>
     </Compile>

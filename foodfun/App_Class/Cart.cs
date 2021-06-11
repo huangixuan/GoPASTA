@@ -320,10 +320,10 @@ public static class Cart
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    public static string AddNewOrder(ConfirmationViewModel model)
+    public static void AddNewOrder(ConfirmationViewModel model)
     {
         Shop.OrderID = 0;
-        Shop.OrderNo = "0";
+
         string str_guid = Guid.NewGuid().ToString().Substring(0, 25);
 
         using (GoPASTAEntities db = new GoPASTAEntities())
@@ -356,10 +356,24 @@ public static class Cart
             if (neword != null)
             {
                 Shop.OrderID = neword.rowid;
+            }
+
+
+        }
+    }
+    public static string GetOrderNO() 
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities()) 
+        {
+            Shop.OrderNo = "";
+            var neword = db.Orders.Where(m => m.rowid == Shop.OrderID).FirstOrDefault();
+            if (neword != null)
+            {
                 Shop.OrderNo = neword.order_no;
             }
+            return Shop.OrderNo;
+
         }
-        return Shop.OrderNo;
     }
 
     public static void AddNewOrderDetail()
@@ -375,14 +389,27 @@ public static class Cart
 
             if (datas != null)
             {
-
                 foreach (var item in datas)
                 {
-                    
-                    
+                    OrdersDetails ordersDetail = new OrdersDetails()
+                    {
+                        order_no = Shop.OrderNo,
+                        product_no = item.product_no,
+                        Property_select = item.Property_select,
+                        each_item_amount = item.each_item_amount,
+                        qty = item.qty,
+                        remark = "",
+                    };
+                    db.OrdersDetails.Add(ordersDetail);
+                    db.SaveChanges();
+                    db.Carts.Remove(item);
                 }
-
+                //db.Carts.RemoveRange(datas);
             }
+            if (UserAccount.IsLogin)
+            {}
+            else
+            {}
 
         }
     }
