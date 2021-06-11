@@ -11,15 +11,15 @@
     <section class="confirmation_part section_padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-12">
                     <div class="order_details_iner">
-                        <h3>Order Details</h3>
+                        <h3>訂單明細</h3>
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th scope="col" colspan="2">Product</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col" colspan="2">品名</th>
+                                    <th scope="col">數量</th>
+                                    <th scope="col">單品小計</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,16 +60,17 @@
 
 
 
+
             <div class="row">
 
-                <div class="col-lg-6 col-lx-4">
+                <div class="col-12 ">
                     <div class="single_confirmation_details">
                         <h4>取餐人資訊 </h4>
                         <ul>
                             <li>
-                                
+
                                 <p>@Html.LabelFor(model => model.Order.receive_name)</p>
-                                <span>@Html.EditorFor(model => model.Order.receive_name )</span>
+                                <span>@Html.EditorFor(model => model.Order.receive_name)</span>
                             </li>
                             <li>
                                 <p>@Html.LabelFor(model => model.Order.receive_phone)</p>
@@ -84,46 +85,47 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-lx-4">
+                <div class="col-12">
                     <div class="single_confirmation_details">
                         <h4> 取餐方式 </h4>
                         <ul>
                             <li>
-                                <p>Street</p><span>: 56/8</span>
+                                <p>@Html.LabelFor(model => model.mealservice_name)</p>
+                                <span>@Html.TextBoxFor(model => model.mealservice_name)</span>
                             </li>
                             <li>
-                                <p>city</p><span>: Los Angeles</span>
+                                <p>@Html.LabelFor(model => model.Order.table_no)</p>
+                                <span>@Html.TextBoxFor(model => model.Order.table_no)</span>
                             </li>
-                            <li>
-                                <p>country</p><span>: United States</span>
-                            </li>
-                            <li>
-                                <p>postcode</p><span>: 36952</span>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-lx-4">
+
+                <div class="col-12">
                     <div class="single_confirmation_details">
-                        <h4>shipping Address</h4>
+                        <h4>付款方式</h4>
                         <ul>
                             <li>
-                                <p>Street</p><span>: 56/8</span>
+                                <p>@Html.LabelFor(model => model.Order.paid_no)</p>
+                                <span>
+
+                                    @Html.DropDownListFor(model => model.Order.paid_no, new SelectList(Model.PaymentsList, "paid_no", "paid_name", Model.Order.paid_no), "請選擇付款方式", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Order.paid_no, "", new { @class = "text-danger" })
+
+                                </span>
                             </li>
-                            <li>
-                                <p>city</p><span>: Los Angeles</span>
-                            </li>
-                            <li>
-                                <p>country</p><span>: United States</span>
-                            </li>
-                            <li>
-                                <p>postcode</p><span>: 36952</span>
-                            </li>
+
                         </ul>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="確認付款" class="btn btn-danger btn-block" />
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
     <!--================ confirmation part end =================-->

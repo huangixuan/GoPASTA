@@ -13,10 +13,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">品名</th>
+                            <th scope="col">售價</th>
+                            <th scope="col">數量</th>
+                            <th scope="col">單品小計</th>
+                            <th scope="col">刪除</th>
                         </tr>
                     </thead>
 
@@ -58,10 +59,22 @@
                                     <h5>$ @item.each_item_amount</h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
+                                    <div>
+                                        <a href="@Url.Action("CartDelete","Product",new {id=item.rowid })">
+                                            <span><i class="fas fa-times"></i></span>
+                                        </a>
+
+                                    </div>
                                 </td>
+
+
+                                @*<a href="/Product/CartDelete/@item.rowid" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                        <i class="fas fa-trash"></i>
+                                    </a>*@
+
+
+
+
                             </tr>
                         }
 
@@ -69,13 +82,15 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <h5>Subtotal</h5>
+                                <h5>訂單金額</h5>
                             </td>
                             <td>
                                 <h5>
                                     $ @Cart.Totals.ToString("#,##0")
                                 </h5>
                             </td>
+                            <td></td>
+
                         </tr>
 
                     </tbody>
