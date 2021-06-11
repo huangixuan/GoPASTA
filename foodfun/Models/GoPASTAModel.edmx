@@ -62,7 +62,7 @@
           <Property Name="cancelreason" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
         </EntityType>
-        <EntityType Name="OrdersDetail">
+        <EntityType Name="OrdersDetails">
           <Key>
             <PropertyRef Name="rowid" />
           </Key>
@@ -212,7 +212,7 @@
           <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MealService" EntityType="Self.MealService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrdersDetail" EntityType="Self.OrdersDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
@@ -271,6 +271,7 @@
           <EntitySet Name="Roles" EntityType="GoPASTAModel.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="GoPASTAModel.sysdiagrams" />
           <EntitySet Name="Users" EntityType="GoPASTAModel.Users" />
+          <EntitySet Name="OrdersDetails" EntityType="GoPASTAModel.OrdersDetails" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -440,6 +441,19 @@
           <Property Name="varify_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isvarify" Type="Boolean" />
           <Property Name="isvalidate" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OrdersDetails">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property_select" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="each_item_amount" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="discount_rate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -639,6 +653,20 @@
                 <ScalarProperty Name="account_name" ColumnName="account_name" />
                 <ScalarProperty Name="mname" ColumnName="mname" />
                 <ScalarProperty Name="mno" ColumnName="mno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersDetails">
+            <EntityTypeMapping TypeName="GoPASTAModel.OrdersDetails">
+              <MappingFragment StoreEntitySet="OrdersDetails">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="discount_rate" ColumnName="discount_rate" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="each_item_amount" ColumnName="each_item_amount" />
+                <ScalarProperty Name="Property_select" ColumnName="Property_select" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
