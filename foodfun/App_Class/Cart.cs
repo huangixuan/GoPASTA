@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 /// <summary>
 /// 購物車類別
 /// </summary>
@@ -160,10 +161,10 @@ public static class Cart
         }
     }
 
-    ///// <summary>
-    ///// 消費者付款
-    ///// </summary>
-    //public static int CartPayment(cvmOrders model)
+    /// <summary>
+    /// 消費者付款
+    /// </summary>
+    //public static int CartPayment(ConfirmationViewModel model)
     //{
     //    int int_order_id = 0;
     //    OrderNo = CreateNewOrderNo(model);
@@ -186,7 +187,7 @@ public static class Cart
     //            {
     //                data.amounts = int_amount;
     //                data.taxs = (int)dec_tax;
-    //                data.totals = int_total ;
+    //                data.totals = int_total;
     //                db.SaveChanges();
     //            }
 
@@ -315,42 +316,44 @@ public static class Cart
         return int_totals.GetValueOrDefault();
     }
 
-    //private static string CreateNewOrderNo(cvmOrders model)
-    //{
-    //    Shop.OrderID = 0;
-    //    Shop.OrderNo = "0";
-    //    string str_order_no = "";
-    //    string str_guid = Guid.NewGuid().ToString().Substring(0, 25).ToUpper();
-    //    using (GoPASTAEntities db = new GoPASTAEntities())
-    //    {
-    //        Orders orders = new Orders();
-    //        orders.order_closed = 0;
-    //        orders.order_validate = 0;
-    //        orders.order_no = "";
-    //        orders.order_date = DateTime.Now;
-    //        orders.user_no = UserAccount.UserNo;
-    //        orders.order_status = "ON";
-    //        orders.order_guid = str_guid;
-    //        orders.payment_no = model.payment_no;
-    //        orders.shipping_no = model.shipping_no;
-    //        orders.receive_name = model.receive_name;
-    //        orders.receive_email = model.receive_email;
-    //        orders.receive_address = model.receive_address;
-    //        orders.remark = "";
-    //        db.Orders.Add(orders);
-    //        db.SaveChanges();
+     public static string AddNewOrderNo(ConfirmationViewModel model)
+    {
+        Shop.OrderID = 0;
+        Shop.OrderNo = "0";
+        string str_guid = Guid.NewGuid().ToString().Substring(0, 25);
 
-    //        var neword = db.Orders.Where(m => m.order_guid == str_guid).FirstOrDefault();
-    //        if (neword != null)
-    //        {
-    //            str_order_no = neword.rowid.ToString().PadLeft(8, '0');
-    //            neword.order_no = str_order_no;
-    //            Shop.OrderID = neword.rowid;
-    //            Shop.OrderNo = str_order_no;
-    //            db.SaveChanges();
-    //        }
-    //    }
-    //    return str_order_no;
-    //}
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            Orders orders = new Orders();
+          
+            orders.isclosed = false;
+            orders.ispaided = false;
+            orders.order_date = DateTime.Now;
+            orders.mno = UserAccount.UserNo;
+            orders.orderstatus_no = "TBC";
+            orders.total = model.Order.total;
+            orders.mealservice_no = model.Order.mealservice_no;
+            orders.SchedulOrderTime = model.Order.SchedulOrderTime;
+            orders.table_no = model.Order.table_no;
+            orders.paid_no = model.Order.paid_no;
+            orders.receive_name = model.Order.receive_name;
+            orders.receive_phone = model.Order.receive_phone;
+            orders.receive_address = model.Order.receive_address;
+            orders.cancelorder = false;
+            orders.cancelreason = "";
+            orders.remark = "";
+            
+            db.Orders.Add(orders);
+            db.SaveChanges();
+
+            var neword = db.Orders.Where(m => m.order_guid  == str_guid).FirstOrDefault();
+            if (neword != null)
+            {
+                Shop.OrderID = neword.rowid;
+                Shop.OrderNo = neword.order_no;
+            }
+        }
+        return Shop.OrderNo;
+    }
     #endregion
 }

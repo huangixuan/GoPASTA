@@ -436,7 +436,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Product\CartList.cshtml" />
-    <Content Include="_master\about.html" />
     <Content Include="_master\assets\css\all.css" />
     <Content Include="_master\assets\css\animate.min.css" />
     <Content Include="_master\assets\css\aos.css" />
@@ -651,13 +650,6 @@
     <Content Include="_master\assets\webfonts\fa-brands-400.svg" />
     <Content Include="_master\assets\webfonts\fa-regular-400.svg" />
     <Content Include="_master\assets\webfonts\fa-solid-900.svg" />
-    <Content Include="_master\blog-details.html" />
-    <Content Include="_master\blog.html" />
-    <Content Include="_master\cart.html" />
-    <Content Include="_master\checkout.html" />
-    <Content Include="_master\confirmation.html" />
-    <Content Include="_master\contact.html" />
-    <Content Include="_master\contact_process.php" />
     <Content Include="_master\Doc\css\font-awesome.min.css" />
     <Content Include="_master\Doc\css\main.css" />
     <Content Include="_master\Doc\css\normalize.min.css" />
@@ -712,13 +704,6 @@
     <Content Include="_master\Doc\syntax-highlighter\styles\shThemeMDUltra.css" />
     <Content Include="_master\Doc\syntax-highlighter\styles\shThemeMidnight.css" />
     <Content Include="_master\Doc\syntax-highlighter\styles\shThemeRDark.css" />
-    <Content Include="_master\elements.html" />
-    <Content Include="_master\index.html" />
-    <Content Include="_master\login.html" />
-    <Content Include="_master\main.html" />
-    <Content Include="_master\product_details.html" />
-    <Content Include="_master\readme.txt" />
-    <Content Include="_master\shop.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

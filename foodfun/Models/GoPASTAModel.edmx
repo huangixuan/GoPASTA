@@ -57,6 +57,7 @@
           <Property Name="receive_address" Type="nvarchar" MaxLength="250" />
           <Property Name="isclosed" Type="bit" />
           <Property Name="ispaided" Type="bit" />
+          <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
           <Property Name="cancelorder" Type="bit" />
           <Property Name="cancelreason" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
@@ -259,7 +260,6 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="Categorys" EntityType="GoPASTAModel.Categorys" />
           <EntitySet Name="MealService" EntityType="GoPASTAModel.MealService" />
-          <EntitySet Name="Orders" EntityType="GoPASTAModel.Orders" />
           <EntitySet Name="OrderStatus" EntityType="GoPASTAModel.OrderStatus" />
           <EntitySet Name="Payments" EntityType="GoPASTAModel.Payments" />
           <EntitySet Name="Products" EntityType="GoPASTAModel.Products" />
@@ -270,6 +270,7 @@
           <EntitySet Name="Users" EntityType="GoPASTAModel.Users" />
           <EntitySet Name="Carts" EntityType="GoPASTAModel.Carts" />
           <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
+          <EntitySet Name="Orders" EntityType="GoPASTAModel.Orders" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -298,31 +299,6 @@
           <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="mealservice_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Orders">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="order_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_date" Type="DateTime" Precision="3" />
-          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="discount_rate" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="taxs" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="total" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" />
-          <Property Name="table_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="receive_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="receive_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="isclosed" Type="Boolean" />
-          <Property Name="ispaided" Type="Boolean" />
-          <Property Name="cancelorder" Type="Boolean" />
-          <Property Name="cancelreason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrderStatus">
@@ -439,6 +415,32 @@
           <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_date" Type="DateTime" Precision="3" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="discount_rate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="taxs" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" />
+          <Property Name="table_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isclosed" Type="Boolean" />
+          <Property Name="ispaided" Type="Boolean" />
+          <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cancelorder" Type="Boolean" />
+          <Property Name="cancelreason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -485,32 +487,6 @@
                 <ScalarProperty Name="remark" ColumnName="remark" />
                 <ScalarProperty Name="mealservice_name" ColumnName="mealservice_name" />
                 <ScalarProperty Name="mealservice_no" ColumnName="mealservice_no" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="GoPASTAModel.Orders">
-              <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="cancelreason" ColumnName="cancelreason" />
-                <ScalarProperty Name="cancelorder" ColumnName="cancelorder" />
-                <ScalarProperty Name="ispaided" ColumnName="ispaided" />
-                <ScalarProperty Name="isclosed" ColumnName="isclosed" />
-                <ScalarProperty Name="receive_address" ColumnName="receive_address" />
-                <ScalarProperty Name="receive_phone" ColumnName="receive_phone" />
-                <ScalarProperty Name="receive_name" ColumnName="receive_name" />
-                <ScalarProperty Name="paid_no" ColumnName="paid_no" />
-                <ScalarProperty Name="table_no" ColumnName="table_no" />
-                <ScalarProperty Name="SchedulOrderTime" ColumnName="SchedulOrderTime" />
-                <ScalarProperty Name="mealservice_no" ColumnName="mealservice_no" />
-                <ScalarProperty Name="orderstatus_no" ColumnName="orderstatus_no" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="taxs" ColumnName="taxs" />
-                <ScalarProperty Name="discount_rate" ColumnName="discount_rate" />
-                <ScalarProperty Name="mno" ColumnName="mno" />
-                <ScalarProperty Name="order_date" ColumnName="order_date" />
-                <ScalarProperty Name="order_no" ColumnName="order_no" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -635,6 +611,33 @@
                 <ScalarProperty Name="pro_name" ColumnName="pro_name" />
                 <ScalarProperty Name="pro_no" ColumnName="pro_no" />
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="GoPASTAModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="cancelreason" ColumnName="cancelreason" />
+                <ScalarProperty Name="cancelorder" ColumnName="cancelorder" />
+                <ScalarProperty Name="order_guid" ColumnName="order_guid" />
+                <ScalarProperty Name="ispaided" ColumnName="ispaided" />
+                <ScalarProperty Name="isclosed" ColumnName="isclosed" />
+                <ScalarProperty Name="receive_address" ColumnName="receive_address" />
+                <ScalarProperty Name="receive_phone" ColumnName="receive_phone" />
+                <ScalarProperty Name="receive_name" ColumnName="receive_name" />
+                <ScalarProperty Name="paid_no" ColumnName="paid_no" />
+                <ScalarProperty Name="table_no" ColumnName="table_no" />
+                <ScalarProperty Name="SchedulOrderTime" ColumnName="SchedulOrderTime" />
+                <ScalarProperty Name="mealservice_no" ColumnName="mealservice_no" />
+                <ScalarProperty Name="orderstatus_no" ColumnName="orderstatus_no" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="taxs" ColumnName="taxs" />
+                <ScalarProperty Name="discount_rate" ColumnName="discount_rate" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
                 <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>

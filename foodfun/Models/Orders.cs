@@ -31,6 +31,7 @@ namespace foodfun.Models
         public string receive_address { get; set; }
         public Nullable<bool> isclosed { get; set; }
         public Nullable<bool> ispaided { get; set; }
+        public string order_guid { get; set; }
         public Nullable<bool> cancelorder { get; set; }
         public string cancelreason { get; set; }
         public string remark { get; set; }
