@@ -402,14 +402,11 @@ public static class Cart
                     };
                     db.OrdersDetails.Add(ordersDetail);
                     db.SaveChanges();
-                    db.Carts.Remove(item);
                 }
-                //db.Carts.RemoveRange(datas);
+                db.Carts.RemoveRange(datas);
+                db.SaveChanges();
             }
-            if (UserAccount.IsLogin)
-            {}
-            else
-            {}
+ 
 
         }
     }
