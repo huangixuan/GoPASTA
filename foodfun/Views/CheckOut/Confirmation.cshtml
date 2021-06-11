@@ -8,125 +8,139 @@
 <main>
 
     <!--================ confirmation part start =================-->
-    <section class="confirmation_part section_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="order_details_iner">
-                        <h3>訂單明細</h3>
-                        <table class="table table-borderless">
-                            <thead>
-                                <tr>
-                                    <th scope="col" colspan="2">品名</th>
-                                    <th scope="col">數量</th>
-                                    <th scope="col">單品小計</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                @foreach (var item in Model.Cart)
-                                {
+    @using (Html.BeginForm())
+    {
+        <section class="confirmation_part section_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="order_details_iner">
+                            <h3>訂單明細</h3>
+                            <table class="table table-borderless">
+                                <thead>
                                     <tr>
-                                        <th>
-                                            <span>@Shop.GetProductName(item.product_no)</span>
-                                        </th>
-                                        <th>
-                                            <span>@item.Property_select</span>
-                                        </th>
+                                        <th scope="col" colspan="2">品名</th>
+                                        <th scope="col">數量</th>
+                                        <th scope="col">單品小計</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                        <th>@item.qty</th>
-                                        <th> <span>$@item.each_item_amount</span></th>
+                                    @foreach (var item in Model.Cart)
+                                    {
+                                        <tr>
+                                            <th>
+                                                <span>@Shop.GetProductName(item.product_no)</span>
+                                            </th>
+                                            <th>
+                                                <span>@item.Property_select</span>
+                                            </th>
+
+                                            <th>@item.qty</th>
+                                            <th> <span>$@item.each_item_amount</span></th>
+                                        </tr>
+
+
+                                    }
+
+                                    <tr>
+                                        <th colspan="3">Subtotal</th>
+                                        <th> <span>$ @Cart.Totals.ToString("#,##0")</span></th>
                                     </tr>
 
-
-                                }
-
-                                <tr>
-                                    <th colspan="3">Subtotal</th>
-                                    <th> <span>$ @Cart.Totals.ToString("#,##0")</span></th>
-                                </tr>
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th scope="col" colspan="3" class="text-right">Total</th>
-                                    <th scope="col">$ @Cart.Totals.ToString("#,##0")</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="row">
-
-                <div class="col-12 ">
-                    <div class="single_confirmation_details">
-                        <h4>取餐人資訊 </h4>
-                        <ul>
-                            <li>
-
-                                <p>@Html.LabelFor(model => model.Order.receive_name)</p>
-                                <span>@Html.EditorFor(model => model.Order.receive_name)</span>
-                            </li>
-                            <li>
-                                <p>@Html.LabelFor(model => model.Order.receive_phone)</p>
-                                <span>@Html.EditorFor(model => model.Order.receive_phone)</span>
-                            </li>
-                            <li>
-                                <p>@Html.LabelFor(model => model.Order.receive_address)</p>
-                                <span>@Html.EditorFor(model => model.Order.receive_address)</span>
-                            </li>
-
-                        </ul>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="col" colspan="3" class="text-right">Total</th>
+                                        <th scope="col">$ @Cart.Totals.ToString("#,##0")</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <div class="single_confirmation_details">
-                        <h4> 取餐方式 </h4>
-                        <ul>
-                            <li>
-                                <p>@Html.LabelFor(model => model.mealservice_name)</p>
-                                <span>@Html.TextBoxFor(model => model.mealservice_name)</span>
-                            </li>
-                            <li>
-                                <p>@Html.LabelFor(model => model.Order.table_no)</p>
-                                <span>@Html.TextBoxFor(model => model.Order.table_no)</span>
-                            </li>
 
-                        </ul>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        @Html.HiddenFor(model => model.Order.mno);
+                        @Html.HiddenFor(model => model.Order.total);
+                        @Html.HiddenFor(model => model.Order.mealservice_no);
+                    </div>
+
+                    <div class="col-12 ">
+                        <div class="single_confirmation_details">
+                            <h4>取餐人資訊 </h4>
+                            <ul>
+                                <li>
+
+                                    <p>@Html.LabelFor(model => model.Order.receive_name)</p>
+                                    <span>@Html.EditorFor(model => model.Order.receive_name)</span>
+                                </li>
+                                <li>
+                                    <p>@Html.LabelFor(model => model.Order.receive_phone)</p>
+                                    <span>@Html.EditorFor(model => model.Order.receive_phone)</span>
+                                </li>
+                                <li>
+                                    <p>@Html.LabelFor(model => model.Order.receive_address)</p>
+                                    <span>@Html.EditorFor(model => model.Order.receive_address)</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="single_confirmation_details">
+                            <h4> 取餐方式 </h4>
+                            <ul>
+                                <li>
+                                    <p>@Html.LabelFor(model => model.mealservice_name)</p>
+                                    <span>@Html.TextBoxFor(model => model.mealservice_name)</span>
+                                </li>
+                                <li>
+                                    <p>@Html.LabelFor(model => model.Order.table_no)</p>
+                                    <span>@Html.TextBoxFor(model => model.Order.table_no)</span>
+                                </li>
+                                <li>
+                                    <p>@Html.LabelFor(model => model.Order.SchedulOrderTime)</p>
+                                    <span>@Html.TextBoxFor(model => model.Order.SchedulOrderTime)</span>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="single_confirmation_details">
+                            <h4>付款方式</h4>
+                            <ul>
+                                <li>
+                                    <p>@Html.LabelFor(model => model.Order.paid_no)</p>
+                                    <span>
+
+                                        @Html.DropDownListFor(model => model.Order.paid_no, new SelectList(Model.PaymentsList, "paid_no", "paid_name", Model.Order.paid_no), "請選擇付款方式", new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Order.paid_no, "", new { @class = "text-danger" })
+
+                                    </span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="確認付款" class="btn btn-danger btn-block" />
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-12">
-                    <div class="single_confirmation_details">
-                        <h4>付款方式</h4>
-                        <ul>
-                            <li>
-                                <p>@Html.LabelFor(model => model.Order.paid_no)</p>
-                                <span>
-
-                                    @Html.DropDownListFor(model => model.Order.paid_no, new SelectList(Model.PaymentsList, "paid_no", "paid_name", Model.Order.paid_no), "請選擇付款方式", new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Order.paid_no, "", new { @class = "text-danger" })
-
-                                </span>
-                            </li>
-
-                        </ul>
-                    </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="確認付款" class="btn btn-danger btn-block" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    }
     <!--================ confirmation part end =================-->
 </main>
