@@ -11,7 +11,7 @@ namespace foodfun.Models
     {
         public class OrdersMetaData
         {
-            [Display(Name = "流水碼")]
+            [Key]
             public int rowid { get; set; }
 
             [Display(Name = "訂單編號")]

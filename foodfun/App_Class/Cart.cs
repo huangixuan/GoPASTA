@@ -280,7 +280,6 @@ public static class Cart
                        .Where(m => m.cart_lotno == LotNo)
                        .ToList();
                     if (data2 != null) int_pro_num = (int)data2.Sum(m => m.qty);
-
                 }
 
             }
@@ -316,7 +315,12 @@ public static class Cart
         return int_totals.GetValueOrDefault();
     }
 
-     public static string AddNewOrderNo(ConfirmationViewModel model)
+    /// <summary>
+    /// 新增New Order
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    public static string AddNewOrder(ConfirmationViewModel model)
     {
         Shop.OrderID = 0;
         Shop.OrderNo = "0";
@@ -325,7 +329,7 @@ public static class Cart
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
             Orders orders = new Orders();
-          
+
             orders.isclosed = false;
             orders.ispaided = false;
             orders.order_date = DateTime.Now;
@@ -341,12 +345,14 @@ public static class Cart
             orders.receive_address = model.Order.receive_address;
             orders.cancelorder = false;
             orders.cancelreason = "";
+            orders.order_guid = str_guid;
             orders.remark = "";
-            
+
+
             db.Orders.Add(orders);
             db.SaveChanges();
 
-            var neword = db.Orders.Where(m => m.order_guid  == str_guid).FirstOrDefault();
+            var neword = db.Orders.Where(m => m.order_guid == str_guid).FirstOrDefault();
             if (neword != null)
             {
                 Shop.OrderID = neword.rowid;
@@ -355,5 +361,33 @@ public static class Cart
         }
         return Shop.OrderNo;
     }
+
+    public static void AddNewOrderDetail()
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+
+            List<Carts> datas;
+            if (UserAccount.IsLogin)
+            { datas = db.Carts.Where(m => m.mno == UserAccount.UserNo).ToList(); }
+            else
+            { datas = db.Carts.Where(m => m.cart_lotno == Cart.LotNo).ToList(); }
+
+            if (datas != null)
+            {
+
+                foreach (var item in datas)
+                {
+                    
+                    
+                }
+
+            }
+
+        }
+    }
     #endregion
 }
+
+
+

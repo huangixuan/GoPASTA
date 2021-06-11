@@ -64,10 +64,11 @@ namespace foodfun.Controllers
                 Order = new Orders(),
                 PaymentsList = db.Payments.OrderBy(m => m.paid_no).ToList()
             };
+
+            orderInfoView.Order.total = Cart.Totals;
             Users userinfo = new Users();
 
             userinfo = db.Users.Where(m => m.account_name == UserAccount.UserNo).FirstOrDefault();
-
 
             if (UserAccount.IsLogin)
             {
@@ -82,8 +83,6 @@ namespace foodfun.Controllers
             }
             orderInfoView.Order.mealservice_no = TempData["mealservice_no"].ToString();
             orderInfoView.Order.SchedulOrderTime = Convert.ToDateTime(TempData["SchedulOrderTime"]);
-
-
             string mealservice_no = orderInfoView.Order.mealservice_no;
 
             if (mealservice_no == "A")
@@ -98,6 +97,7 @@ namespace foodfun.Controllers
 
             var mealservice = db.MealService.Where(m => m.mealservice_no == mealservice_no).FirstOrDefault();
             orderInfoView.mealservice_name = mealservice.mealservice_name;
+
 
             return View(orderInfoView);
 
@@ -116,11 +116,12 @@ namespace foodfun.Controllers
                 return View(model);
             }
 
-            string a = Cart.AddNewOrderNo(model);
+            string a = Cart.AddNewOrder(model);
+            
 
 
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
