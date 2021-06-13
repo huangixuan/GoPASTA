@@ -8,7 +8,7 @@ using foodfun.Models;
 
 namespace foodfun.Areas.Admin.Controllers
 {
-    public class ProductController : Controller
+    public class ProductBackController : Controller
     {
         public ActionResult Index()
         {

@@ -7,7 +7,7 @@
 <h2>商品基本資料</h2>
 
 <p>
-    @Html.ActionLink("新增記錄", "Create", "Product", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("新增記錄", "Create", "ProductBack", null, new { @class = "btn btn-primary" })
 </p>
 
 <nav class="full-width">
@@ -104,9 +104,9 @@
                     @Html.DisplayFor(modelItem => item.remark)
                 </td>
                 <td>
-                    @Html.ActionLink("修改", "Edit", "Product", new { id = item.product_no }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("修改", "Edit", "ProductBack", new { id = item.product_no }, new { @class = "btn btn-info" })
                     @*@Html.ActionLink("明細", "Details", "Product", new { id = item.product_no }, new { @class = "btn btn-primary" })*@
-                    @Html.ActionLink("刪除", "Delete", "Product", new { id = item.product_no }, new { @class = "btn btn-success", onclick="return confirm('是否確定要刪除?')" })
+                    @Html.ActionLink("刪除", "Delete", "ProductBack", new { id = item.product_no }, new { @class = "btn btn-success", onclick="return confirm('是否確定要刪除?')" })
                 </td>
             </tr>
         }

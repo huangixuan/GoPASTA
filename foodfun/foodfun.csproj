@@ -141,7 +141,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductBackController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -421,9 +421,9 @@
     <Content Include="AdminBack\README.md" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductBack\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductBack\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductBack\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
