@@ -313,8 +313,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -356,10 +354,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="css\font-awesome.css" />
-    <Content Include="css\font-awesome.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -407,11 +402,6 @@
     <Content Include="Models\GoPASTAModel.edmx.diagram">
       <DependentUpon>GoPASTAModel.edmx</DependentUpon>
     </Content>
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="AdminBack\.github\ISSUE_TEMPLATE.md" />
     <Content Include="AdminBack\assets\css\style.css.map" />
     <Content Include="AdminBack\assets\fonts\icomoon\icomoon.eot" />
@@ -823,7 +813,6 @@
     <Content Include="Views\Shared\_LayoutLight.cshtml" />
     <Content Include="Views\User\UserInfo.cshtml" />
     <Content Include="Views\Product\CategoryList.cshtml" />
-    <Content Include="Views\Product\mealservice.cshtml" />
     <Content Include="Views\CheckOut\MealService.cshtml" />
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />

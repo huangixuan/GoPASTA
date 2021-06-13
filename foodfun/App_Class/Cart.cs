@@ -255,7 +255,7 @@ public static class Cart
             else
             {
                 var data2 = db.Carts
-                   .Where(m => m.cart_lotno == LotNo)
+                   .Where(m => m.cart_lotno == Cart.LotNo)
                    .ToList();
                 if (data2 != null) int_count = data2.Count;
             }
@@ -267,22 +267,22 @@ public static class Cart
         int int_pro_num = 0;
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
+            List<Carts> data1;
             if (UserAccount.IsLogin)
             {
-                var data1 = db.Carts.Where(m => m.mno == UserAccount.UserNo).ToList();
-                if (data1 != null)
-                {
-                    int_pro_num = (int)data1.Sum(m => m.qty);
-                }
-                else
-                {
-                    var data2 = db.Carts
-                       .Where(m => m.cart_lotno == LotNo)
-                       .ToList();
-                    if (data2 != null) int_pro_num = (int)data2.Sum(m => m.qty);
-                }
-
+                data1 = db.Carts.Where(m => m.mno == UserAccount.UserNo).ToList();
             }
+            else
+            {
+                data1 = db.Carts.Where(m => m.cart_lotno == Cart.LotNo).ToList();
+            }
+            if (data1 != null)
+            {
+                int_pro_num = (int)data1.Sum(m => m.qty);
+            }
+
+
+
         }
         return int_pro_num;
     }
@@ -361,9 +361,9 @@ public static class Cart
 
         }
     }
-    public static string GetOrderNO() 
+    public static string GetOrderNO()
     {
-        using (GoPASTAEntities db = new GoPASTAEntities()) 
+        using (GoPASTAEntities db = new GoPASTAEntities())
         {
             Shop.OrderNo = "";
             var neword = db.Orders.Where(m => m.rowid == Shop.OrderID).FirstOrDefault();
@@ -402,11 +402,12 @@ public static class Cart
                     };
                     db.OrdersDetails.Add(ordersDetail);
                     db.SaveChanges();
+                    //db.Carts.Remove(item);
                 }
-                db.Carts.RemoveRange(datas);
-                db.SaveChanges();
+                //db.Carts.RemoveRange(datas);
+                    db.SaveChanges();
             }
- 
+
 
         }
     }

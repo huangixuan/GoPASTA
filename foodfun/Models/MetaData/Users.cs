@@ -39,12 +39,15 @@ namespace foodfun.Models
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "yyyy/MM/dd")]
             public Nullable<System.DateTime> birthday { get; set; }
 
+            
             [Display(Name = "手機號碼")]
             public string phone { get; set; }
 
             [Display(Name = "地址")]
             public string address { get; set; }
 
+            [Required(ErrorMessage = "電子信箱不可空白")]
+            [EmailAddress(ErrorMessage = "電子信箱格式錯誤")]
             [Display(Name = "電子信箱")]
             public string email { get; set; }
 

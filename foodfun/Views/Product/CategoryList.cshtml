@@ -13,7 +13,6 @@
 }
 
 
-
 <section class="popular-items latest-padding">
     <div class="container">
 
@@ -53,10 +52,10 @@
                             <div class="single-popular-items mb-50 text-center">
                                 <div class="popular-img">
                                     <img src="@img_path" alt="">
-                                    <div class="img-cap">
+                                    <div class="img-cap" data-toggle="modal" data-target="#@item.product_no">
                                         <span>
                                             @*@Html.ActionLink("Add to cart", "ProductDetail", "Products", new { id = item.product_no }, new { @class = "text-light" })*@
-                                            <a href="" class="text-light">加入餐點</a>
+                                            <a  class="text-light">加入餐點</a>
                                         </span>
                                     </div>
                                     <div class="favorit-items">
@@ -92,7 +91,7 @@
 
                                         </div>
                                         <div class="modal-header text-center">
-                                            <h3 class="modal-title " id="exampleModalLongTitle">@item.product_name</h3>
+                                            <h3 class="modal-title text-center " id="exampleModalLongTitle">@item.product_name</h3>
                                         </div>
                                         <div class="modal-body">
 
@@ -103,7 +102,7 @@
                                                         <div class="col-lg-8">
                                                             <div class="single_product_text text-center">
                                                                 <p>
-                                                                    Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources.
+                                                                    @item.description
                                                                 </p>
                                                                 <div class="pruduct_property">
 
@@ -121,7 +120,7 @@
                                                                                     <span class="product-detail-label control-label">@item1.Text</span>
 
                                                                                     @{
-                                                                                        List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split(',').ToList();
+                                                                                        List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split('/').ToList();
                                                                                         foreach (var value in prop_values)
                                                                                         {
                                                                                             @Html.RadioButton(@item1.Value, @value) @Html.Label(item1.Value, @value)
@@ -135,13 +134,13 @@
                                                                 </div>
                                                                 <div class="card_area">
                                                                     <div class="product_count_area">
-                                                                        <p>Quantity</p>
+                                                                        <p>數量</p>
                                                                         <div class="product_count d-inline-block">
-                                                                            <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                                                                            <input id="qty" name="qty" class="product_count_item input-number" type="text" value="1" min="0" max="10">
+                                                                            <span class="product_count_item number-decrement"> <i class="ti-minus"></i></span>
+                                                                            <input id= qty name="qty" class="product_count_item input-number" type="text" value="1" min="0" max="10">
                                                                             <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                                                                         </div>
-                                                                        <p>@item.price_sale</p>
+                                                                        <p>@string.Format("{0:C}", @item.price_sale)</p>
                                                                     </div>
                                                                     <div class="add_to_cart">
                                                                         <input type="submit" value="加入購物車" class="btn_3" />
@@ -168,5 +167,21 @@
         </div>
     </div>
 </section>
+<script>
+    $(".number-decrement").click(function () {
+        var qty = $(this).parent().find("input");
+        var num = qty.val() - 1;
+        if (num < 1) { num = 1; }
+        qty.val(num);
+    })
+    $(".number-increment").click(function () {
+        var qty = $(this).parent().find("input");
+        var num = parseInt(qty.val()) + 1;
+
+        qty.val(num);
+    })
+
+
+</script>
 
 <!-- Button trigger modal -->

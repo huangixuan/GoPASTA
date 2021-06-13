@@ -68,12 +68,6 @@
                                 </td>
 
 
-                                @*<a href="/Product/CartDelete/@item.rowid" class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                        <i class="fas fa-trash"></i>
-                                    </a>*@
-
-
-
 
                             </tr>
                         }
@@ -96,8 +90,8 @@
                     </tbody>
                 </table>
                 <div class="checkout_btn_inner float-right">
-                    <a class="btn_1" href="@Url.Action("CategoryList", "Product", new { id = "HOT" })">Continue Shopping</a>
-                    <a class="btn_1 checkout_btn_1" href="@Url.Action("MealService","CheckOut")">Proceed to checkout</a>
+                    <a class="btn btn-primary" href="@Url.Action("CategoryList", "Product", new { id = "HOT" })">繼續點餐</a>
+                    <a class="btn btn-danger  " href="@Url.Action("MealService","CheckOut")">前往結帳</a>
                 </div>
             </div>
         </div>
