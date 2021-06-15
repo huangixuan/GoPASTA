@@ -11,7 +11,7 @@ namespace foodfun.Models
     {
         private class UsersMetaData
         {
-        
+
             [Key]
             public int mno { get; set; }
 
@@ -20,7 +20,7 @@ namespace foodfun.Models
             /// </summary>
             [Display(Name = "姓名")]
             [Required(ErrorMessage = "姓名不可空白")]
-            
+
             public string mname { get; set; }
 
             [Display(Name = "帳號")]
@@ -39,8 +39,9 @@ namespace foodfun.Models
             [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "yyyy/MM/dd")]
             public Nullable<System.DateTime> birthday { get; set; }
 
-            
+            [Required]
             [Display(Name = "手機號碼")]
+            [RegularExpression(@"^09[0-9]{8}",ErrorMessage ="手機號碼格式錯誤")]
             public string phone { get; set; }
 
             [Display(Name = "地址")]
