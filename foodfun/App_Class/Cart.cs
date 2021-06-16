@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 /// <summary>
 /// 購物車類別
 /// </summary>
@@ -160,10 +161,10 @@ public static class Cart
         }
     }
 
-    ///// <summary>
-    ///// 消費者付款
-    ///// </summary>
-    //public static int CartPayment(cvmOrders model)
+    /// <summary>
+    /// 消費者付款
+    /// </summary>
+    //public static int CartPayment(ConfirmationViewModel model)
     //{
     //    int int_order_id = 0;
     //    OrderNo = CreateNewOrderNo(model);
@@ -186,7 +187,7 @@ public static class Cart
     //            {
     //                data.amounts = int_amount;
     //                data.taxs = (int)dec_tax;
-    //                data.totals = int_total ;
+    //                data.totals = int_total;
     //                db.SaveChanges();
     //            }
 
@@ -254,7 +255,7 @@ public static class Cart
             else
             {
                 var data2 = db.Carts
-                   .Where(m => m.cart_lotno == LotNo)
+                   .Where(m => m.cart_lotno == Cart.LotNo)
                    .ToList();
                 if (data2 != null) int_count = data2.Count;
             }
@@ -266,23 +267,22 @@ public static class Cart
         int int_pro_num = 0;
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
+            List<Carts> data1;
             if (UserAccount.IsLogin)
             {
-                var data1 = db.Carts.Where(m => m.mno == UserAccount.UserNo).ToList();
-                if (data1 != null)
-                {
-                    int_pro_num = (int)data1.Sum(m => m.qty);
-                }
-                else
-                {
-                    var data2 = db.Carts
-                       .Where(m => m.cart_lotno == LotNo)
-                       .ToList();
-                    if (data2 != null) int_pro_num = (int)data2.Sum(m => m.qty);
-
-                }
-
+                data1 = db.Carts.Where(m => m.mno == UserAccount.UserNo).ToList();
             }
+            else
+            {
+                data1 = db.Carts.Where(m => m.cart_lotno == Cart.LotNo).ToList();
+            }
+            if (data1 != null)
+            {
+                int_pro_num = (int)data1.Sum(m => m.qty);
+            }
+
+
+
         }
         return int_pro_num;
     }
@@ -315,42 +315,104 @@ public static class Cart
         return int_totals.GetValueOrDefault();
     }
 
-    //private static string CreateNewOrderNo(cvmOrders model)
-    //{
-    //    Shop.OrderID = 0;
-    //    Shop.OrderNo = "0";
-    //    string str_order_no = "";
-    //    string str_guid = Guid.NewGuid().ToString().Substring(0, 25).ToUpper();
-    //    using (GoPASTAEntities db = new GoPASTAEntities())
-    //    {
-    //        Orders orders = new Orders();
-    //        orders.order_closed = 0;
-    //        orders.order_validate = 0;
-    //        orders.order_no = "";
-    //        orders.order_date = DateTime.Now;
-    //        orders.user_no = UserAccount.UserNo;
-    //        orders.order_status = "ON";
-    //        orders.order_guid = str_guid;
-    //        orders.payment_no = model.payment_no;
-    //        orders.shipping_no = model.shipping_no;
-    //        orders.receive_name = model.receive_name;
-    //        orders.receive_email = model.receive_email;
-    //        orders.receive_address = model.receive_address;
-    //        orders.remark = "";
-    //        db.Orders.Add(orders);
-    //        db.SaveChanges();
+    /// <summary>
+    /// 新增New Order
+    /// </summary>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    public static void AddNewOrder(ConfirmationViewModel model)
+    {
+        Shop.OrderID = 0;
 
-    //        var neword = db.Orders.Where(m => m.order_guid == str_guid).FirstOrDefault();
-    //        if (neword != null)
-    //        {
-    //            str_order_no = neword.rowid.ToString().PadLeft(8, '0');
-    //            neword.order_no = str_order_no;
-    //            Shop.OrderID = neword.rowid;
-    //            Shop.OrderNo = str_order_no;
-    //            db.SaveChanges();
-    //        }
-    //    }
-    //    return str_order_no;
-    //}
+        string str_guid = Guid.NewGuid().ToString().Substring(0, 25);
+
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            Orders orders = new Orders();
+
+            orders.isclosed = false;
+            orders.ispaided = false;
+            orders.order_date = DateTime.Now;
+            orders.mno = UserAccount.UserNo;
+            orders.orderstatus_no = "TBC";
+            orders.total = model.Order.total;
+            orders.mealservice_no = model.Order.mealservice_no;
+            orders.SchedulOrderTime = model.Order.SchedulOrderTime;
+            orders.table_no = model.Order.table_no;
+            orders.paid_no = model.Order.paid_no;
+            orders.receive_name = model.Order.receive_name;
+            orders.receive_phone = model.Order.receive_phone;
+            orders.receive_address = model.Order.receive_address;
+            orders.cancelorder = false;
+            orders.cancelreason = "";
+            orders.order_guid = str_guid;
+            orders.remark = "";
+
+
+            db.Orders.Add(orders);
+            db.SaveChanges();
+
+            var neword = db.Orders.Where(m => m.order_guid == str_guid).FirstOrDefault();
+            if (neword != null)
+            {
+                Shop.OrderID = neword.rowid;
+            }
+
+
+        }
+    }
+    public static string GetOrderNO()
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+            Shop.OrderNo = "";
+            var neword = db.Orders.Where(m => m.rowid == Shop.OrderID).FirstOrDefault();
+            if (neword != null)
+            {
+                Shop.OrderNo = neword.order_no;
+            }
+            return Shop.OrderNo;
+
+        }
+    }
+
+    public static void AddNewOrderDetail()
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities())
+        {
+
+            List<Carts> datas;
+            if (UserAccount.IsLogin)
+            { datas = db.Carts.Where(m => m.mno == UserAccount.UserNo).ToList(); }
+            else
+            { datas = db.Carts.Where(m => m.cart_lotno == Cart.LotNo).ToList(); }
+
+            if (datas != null)
+            {
+                foreach (var item in datas)
+                {
+                    OrdersDetails ordersDetail = new OrdersDetails()
+                    {
+                        order_no = Shop.OrderNo,
+                        product_no = item.product_no,
+                        Property_select = item.Property_select,
+                        each_item_amount = item.each_item_amount,
+                        qty = item.qty,
+                        remark = "",
+                    };
+                    db.OrdersDetails.Add(ordersDetail);
+                    db.SaveChanges();
+                    //db.Carts.Remove(item);
+                }
+                //db.Carts.RemoveRange(datas);
+                    db.SaveChanges();
+            }
+
+
+        }
+    }
     #endregion
 }
+
+
+

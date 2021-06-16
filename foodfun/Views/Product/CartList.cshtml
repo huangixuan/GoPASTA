@@ -13,10 +13,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Product</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
+                            <th scope="col">品名</th>
+                            <th scope="col">售價</th>
+                            <th scope="col">數量</th>
+                            <th scope="col">單品小計</th>
+                            <th scope="col">刪除</th>
                         </tr>
                     </thead>
 
@@ -58,10 +59,16 @@
                                     <h5>$ @item.each_item_amount</h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                                    </button>
+                                    <div>
+                                        <a href="@Url.Action("CartDelete","Product",new {id=item.rowid })">
+                                            <span><i class="fas fa-times"></i></span>
+                                        </a>
+
+                                    </div>
                                 </td>
+
+
+
                             </tr>
                         }
 
@@ -69,20 +76,22 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <h5>Subtotal</h5>
+                                <h5>訂單金額</h5>
                             </td>
                             <td>
                                 <h5>
                                     $ @Cart.Totals.ToString("#,##0")
                                 </h5>
                             </td>
+                            <td></td>
+
                         </tr>
 
                     </tbody>
                 </table>
                 <div class="checkout_btn_inner float-right">
-                    <a class="btn_1" href="@Url.Action("CategoryList", "Product", new { id = "HOT" })">Continue Shopping</a>
-                    <a class="btn_1 checkout_btn_1" href="@Url.Action("MealService","CheckOut")">Proceed to checkout</a>
+                    <a class="btn btn-primary" href="@Url.Action("CategoryList", "Product", new { id = "HOT" })">繼續點餐</a>
+                    <a class="btn btn-danger  " href="@Url.Action("MealService","CheckOut")">前往結帳</a>
                 </div>
             </div>
         </div>

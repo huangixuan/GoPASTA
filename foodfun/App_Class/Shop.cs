@@ -111,7 +111,7 @@ public static class Shop
     /// </summary>
     /// <param name="productNo">商品編號</param>
     /// <returns></returns>
-    public static string GetProductImage(string productNo,string Category_no)
+    public static string GetProductImage(string productNo, string Category_no)
     {
         string str_image = string.Format("~/img/product/{0}/{1}.jpg", Category_no, productNo);
         if (File.Exists(HttpContext.Current.Server.MapPath(str_image)))
@@ -236,7 +236,7 @@ public static class Shop
     /// </summary>
     /// <param name="productNo">商品編號</param>
     /// <returns></returns>
-    public static string GetCategoryName(string productNo ,ref string cat_id)
+    public static string GetCategoryName(string productNo, ref string cat_id)
     {
         string str_name = "";
         using (GoPASTAEntities db = new GoPASTAEntities())
@@ -246,11 +246,11 @@ public static class Shop
             {
                 string int_cate_id = prod.category_no;
 
-                    var cate = db.Categorys.Where(m => m.category_no == int_cate_id).FirstOrDefault();
-                    //if (cate == null) break;
-                    str_name = cate.category_name + (string.IsNullOrEmpty(str_name) ? "" : "/") + str_name;
-             
-                
+                var cate = db.Categorys.Where(m => m.category_no == int_cate_id).FirstOrDefault();
+                //if (cate == null) break;
+                str_name = cate.category_name + (string.IsNullOrEmpty(str_name) ? "" : "/") + str_name;
+
+
             }
             return str_name;
         }
@@ -493,7 +493,7 @@ public static class Shop
         return int_value;
     }
 
-    public static string GetProductPropertyValue( string propertyNo)
+    public static string GetProductPropertyValue(string propertyNo)
     {
         using (GoPASTAEntities db = new GoPASTAEntities())
         {
@@ -531,7 +531,7 @@ public static class Shop
                     if (datas != null) str_name = datas.property_name;
                     SelectListItem data = new SelectListItem();
                     data.Text = str_name;
-                    data.Value = item.product_no;
+                    data.Value = item.Property_no;
                     plist.Add(data);
                 }
             }

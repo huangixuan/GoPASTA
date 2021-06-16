@@ -12,7 +12,7 @@
             //是否在當前面板顯示上、下兩個月的一些日期數
             showOtherMonths: true,
             //設定是否在面板上顯示相關的按鈕
-            showButtonPanel: true,
+            showButtonPanel: false,
             //如果設定為true，則約束當前輸入的日期格式。
             constrainInput: true,
             //設定什麼事件觸發顯示日期外掛的面板，可選值：focus, button, both

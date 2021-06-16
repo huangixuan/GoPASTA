@@ -2852,7 +2852,7 @@ input:hover, input:focus {
             font-family: "Josefin Sans",sans-serif;
             color: #141517;
             font-weight: 600;
-            padding: 41px 21px;
+            padding: 38px 21px;
             display: inline-block;
             text-transform: capitalize;
             display: block;
@@ -2889,11 +2889,11 @@ input:hover, input:focus {
     .header-area .main-header .menu-wrapper .header-right ul li:hover > ul.submenu {
         visibility: visible;
         opacity: 1;
-        top: 260%
+        top: 240%
     }
 
 .header-area .main-header .menu-wrapper ul li:hover > ul.submenu::before {
-    top: -8px
+    top: -28px
 }
 
 .header-area .main-header .menu-wrapper .main-menu ul ul.submenu {
@@ -2901,7 +2901,7 @@ input:hover, input:focus {
     width: 170px;
     background: #fff;
     left: 0;
-    top: 90%;
+    top: 50%;
     visibility: hidden;
     opacity: 0;
     box-shadow: 0 0 10px 3px rgba(0,0,0,0.05);
@@ -2917,10 +2917,10 @@ input:hover, input:focus {
 
 .header-area .main-header .menu-wrapper .header-right ul ul.submenu {
     position: absolute;
-    width: 170px;
+    width: 120px;
     background: #fff;
-    right: 10%;
-    top: 90%;
+    right: -20%;
+    top: 50%;
     visibility: hidden;
     opacity: 0;
     box-shadow: 0 0 10px 3px rgba(0,0,0,0.05);
@@ -2935,12 +2935,12 @@ input:hover, input:focus {
 }
 
 .header-area .main-header .menu-wrapper ul ul.submenu > li {
-    margin-left: 7px;
+    margin: 10px 6px !important;
     display: block
 }
 
     .header-area .main-header .menu-wrapper ul ul.submenu > li > a {
-        padding: 6px 10px !important;
+        padding: 6px !important;
         font-size: 16px;
         color: #0b1c39;
         text-transform: capitalize
@@ -2971,7 +2971,7 @@ input:hover, input:focus {
 
 .header-area .main-header .menu-wrapper .header-right ul ul.submenu::before {
     left: unset;
-    right: 13%;
+    right: 50%;
 }
 
 
@@ -2997,11 +2997,11 @@ input:hover, input:focus {
     }
 }*/
 
-.header-area .main-header .menu-wrapper .header-right ul {
-    display: flex !important;
+/*.header-area .main-header .menu-wrapper .header-right ul {
+    display: flex !important;*/
     /*display:inline-block;*/
-    justify-content: space-between
-}
+    /*justify-content: space-between
+}*/
 
 .header-area .main-header .menu-wrapper .header-right .nav-search {
     display: inline-block
@@ -10959,12 +10959,13 @@ input:focus {
 
 .confirmation_part .single_confirmation_details {
     background-color: #e8e8e8;
-    padding: 35px 40px
+    padding: 35px 40px;
+    margin-bottom: 50px
 }
 
 @media (max-width: 991px) {
     .confirmation_part .single_confirmation_details {
-        margin-bottom: 15px
+        margin-bottom: 30px
     }
 }
 
