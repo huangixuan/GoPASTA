@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Carts">
           <Key>
             <PropertyRef Name="rowid" />
@@ -41,7 +41,7 @@
             <PropertyRef Name="rowid" />
           </Key>
           <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="order_date" Type="datetime" />
           <Property Name="mno" Type="nvarchar" MaxLength="50" />
           <Property Name="discount_rate" Type="decimal" Precision="18" Scale="4" />
@@ -57,10 +57,10 @@
           <Property Name="receive_address" Type="nvarchar" MaxLength="250" />
           <Property Name="isclosed" Type="bit" />
           <Property Name="ispaided" Type="bit" />
-          <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
           <Property Name="cancelorder" Type="bit" />
           <Property Name="cancelreason" Type="nvarchar" MaxLength="50" />
           <Property Name="remark" Type="nvarchar" MaxLength="250" />
+          <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="OrdersDetails">
           <Key>
@@ -194,7 +194,8 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GoPASTAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -234,7 +235,7 @@
             <PropertyRef Name="rowid" />
           </Key>
           <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="order_date" Type="DateTime" Precision="3" />
           <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="discount_rate" Type="Decimal" Precision="18" Scale="4" />
@@ -250,10 +251,10 @@
           <Property Name="receive_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="isclosed" Type="Boolean" />
           <Property Name="ispaided" Type="Boolean" />
-          <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="cancelorder" Type="Boolean" />
           <Property Name="cancelreason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrdersDetails">
           <Key>
@@ -313,6 +314,17 @@
           <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Property_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ProgramList">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Propertys">
           <Key>
             <PropertyRef Name="rowid" />
@@ -370,23 +382,12 @@
           <EntitySet Name="Payments" EntityType="Self.Payments" />
           <EntitySet Name="Products" EntityType="Self.Products" />
           <EntitySet Name="ProductsProperty" EntityType="Self.ProductsProperty" />
+          <EntitySet Name="ProgramList" EntityType="Self.ProgramList" />
           <EntitySet Name="Propertys" EntityType="Self.Propertys" />
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="ProgramList" EntityType="GoPASTAModel.ProgramList" />
         </EntityContainer>
-        <EntityType Name="ProgramList">
-          <Key>
-            <PropertyRef Name="rowid" />
-          </Key>
-          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="parentid" Type="Int32" />
-          <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -447,10 +448,10 @@
                 <ScalarProperty Name="receive_address" ColumnName="receive_address" />
                 <ScalarProperty Name="isclosed" ColumnName="isclosed" />
                 <ScalarProperty Name="ispaided" ColumnName="ispaided" />
-                <ScalarProperty Name="order_guid" ColumnName="order_guid" />
                 <ScalarProperty Name="cancelorder" ColumnName="cancelorder" />
                 <ScalarProperty Name="cancelreason" ColumnName="cancelreason" />
                 <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="order_guid" ColumnName="order_guid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -517,6 +518,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProgramList">
+            <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
+              <MappingFragment StoreEntitySet="ProgramList">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="pro_no" ColumnName="pro_no" />
+                <ScalarProperty Name="pro_name" ColumnName="pro_name" />
+                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+                <ScalarProperty Name="action_name" ColumnName="action_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Propertys">
             <EntityTypeMapping TypeName="GoPASTAModel.Propertys">
               <MappingFragment StoreEntitySet="Propertys">
@@ -565,18 +578,6 @@
                 <ScalarProperty Name="varify_code" ColumnName="varify_code" />
                 <ScalarProperty Name="isvarify" ColumnName="isvarify" />
                 <ScalarProperty Name="isvalidate" ColumnName="isvalidate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProgramList">
-            <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
-              <MappingFragment StoreEntitySet="ProgramList">
-                <ScalarProperty Name="action_name" ColumnName="action_name" />
-                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
-                <ScalarProperty Name="pro_name" ColumnName="pro_name" />
-                <ScalarProperty Name="pro_no" ColumnName="pro_no" />
-                <ScalarProperty Name="parentid" ColumnName="parentid" />
-                <ScalarProperty Name="rowid" ColumnName="rowid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
