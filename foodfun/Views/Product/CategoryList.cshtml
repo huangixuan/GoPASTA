@@ -45,7 +45,7 @@
                 <div class="row">
                     @foreach (var item in Model)
                     {
-                        string img_path = Shop.GetProductImage(item.product_no,item.category_no);
+                        string img_path = Shop.GetProductImage(item.product_no, item.category_no);
 
                         <!-- card one -->
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
@@ -55,7 +55,7 @@
                                     <div class="img-cap" data-toggle="modal" data-target="#@item.product_no">
                                         <span>
                                             @*@Html.ActionLink("Add to cart", "ProductDetail", "Products", new { id = item.product_no }, new { @class = "text-light" })*@
-                                            <a  class="text-light">加入餐點</a>
+                                            <a class="text-light">加入餐點</a>
                                         </span>
                                     </div>
                                     <div class="favorit-items">
@@ -116,14 +116,15 @@
                                                                         {
 
                                                                             <div class="section">
-                                                                                <div>
-                                                                                    <span class="product-detail-label control-label">@item1.Text</span>
+                                                                                <span class="col-form-label">@item1.Text   </span>
 
+                                                                                <div class="form-check form-check-inline">
                                                                                     @{
                                                                                         List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split('/').ToList();
                                                                                         foreach (var value in prop_values)
                                                                                         {
-                                                                                            @Html.RadioButton(@item1.Value, @value) @Html.Label(item1.Value, @value)
+                                                                                            @Html.RadioButton(@item1.Value, @value, new { @class = "form-check-input" })
+                                                                                            @Html.Label(item1.Value, @value, new { @class = "form-check-label" })
 
                                                                                         }
                                                                                     }
@@ -137,7 +138,7 @@
                                                                         <p>數量</p>
                                                                         <div class="product_count d-inline-block">
                                                                             <span class="product_count_item number-decrement"> <i class="ti-minus"></i></span>
-                                                                            <input id= qty name="qty" class="product_count_item input-number" type="text" value="1" min="0" max="10">
+                                                                            <input id=qty name="qty" class="product_count_item input-number" type="text" value="1" min="0" max="10">
                                                                             <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                                                                         </div>
                                                                         <p>@string.Format("{0:C}", @item.price_sale)</p>

@@ -7,6 +7,8 @@
 
 <script src="~/Scripts/datepicker-zh-TW.js"></script>
 <script src="~/Scripts/datepicker.js"></script>
+<script src="~/Scripts/jquery.twzipcode.min.js"></script>
+
 
 <section class=" box_part ">
 
@@ -70,16 +72,19 @@
                                 @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control single-input ", @placeholder = "手機號碼" } })
                                 @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
                             </div>
-                            <div class="col-12" id="twzipcode">
-                                @*<div class="col-5" data-role="county"></div>
-                                <div class="col-7" data-role="district"></div>*@
-                            </div>
+
 
                         </div>
-                        
-                        <div class="form-group">
 
-                            <div class="col-12" >
+
+                        <div class="form-group">
+                            <div class="col-12">
+                            <div class="row" id="twzipcode">
+
+                                <div class="col-md-6  form-group " data-role="county"></div>
+                                <div class="col-md-6  form-group " data-role="district"></div>
+                            </div>
+
 
                                 @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control single-input ", @placeholder = "地址" } })
                                 @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
@@ -103,7 +108,17 @@
 
 <script>
 
-    $('#twzipcode').twzipcode();
+    $('#twzipcode').twzipcode({
+
+        zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+        css: [" form-control single-input", " form-control single-input"], // 自訂 "城市"、"地區" class 名稱
+        
+    });
+    $("#twzipcode select").change(function () {
+        var add = $("#twzipcode").twzipcode("get", "county") + $("#twzipcode").twzipcode("get", "district")
+        $("#address").val(add);
+        
+    })
 
 
 </script>
