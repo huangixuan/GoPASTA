@@ -20,6 +20,5 @@ namespace foodfun.Models
         public string pro_name { get; set; }
         public string controller_name { get; set; }
         public string action_name { get; set; }
-
     }
 }

@@ -23,6 +23,7 @@ _UpgradeReport_Files/
 # Directories #
 ###############
 bin/
+.vs/
 obj/
 TestResults/
 ###################
@@ -74,4 +75,4 @@ _[Ss]cripts
 *.ncrunchsolution
 *.dot[Cc]over
 *.config
-.vs/
+*applicationhost.config
