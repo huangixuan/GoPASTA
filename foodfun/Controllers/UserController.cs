@@ -39,7 +39,8 @@ namespace foodfun.Controllers
                 }
                 UserAccount.UserNo = model.UserNo;
                 UserAccount.Login();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("RedirectToUserPage");
+
             }
         }
 
@@ -282,6 +283,17 @@ namespace foodfun.Controllers
             ViewBag.MessageText = TempData["MessageText"];
             ViewBag.HeaderText = TempData["HeaderText"];
             return View();
+        }
+
+
+        //後台登入設定
+        public ActionResult RedirectToUserPage()
+        {
+
+
+            if (UserAccount.Role == EnumList.LoginRole.Admin) return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            if (UserAccount.Role == EnumList.LoginRole.Staff) return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            return RedirectToAction("Index", "Home");
         }
 
     }

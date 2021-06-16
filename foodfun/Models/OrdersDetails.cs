@@ -12,13 +12,15 @@ namespace foodfun.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProgramList
+    public partial class OrdersDetails
     {
         public int rowid { get; set; }
-        public Nullable<int> parentid { get; set; }
-        public string pro_no { get; set; }
-        public string pro_name { get; set; }
-        public string controller_name { get; set; }
-        public string action_name { get; set; }
+        public string order_no { get; set; }
+        public string product_no { get; set; }
+        public string Property_select { get; set; }
+        public Nullable<int> each_item_amount { get; set; }
+        public Nullable<int> qty { get; set; }
+        public Nullable<decimal> discount_rate { get; set; }
+        public string remark { get; set; }
     }
 }

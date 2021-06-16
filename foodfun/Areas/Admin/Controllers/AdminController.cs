@@ -9,7 +9,7 @@ namespace foodfun.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         // GET: Admin/Admin
-       // [LoginAuthorize(RoleList = "Admin")]
+        [LoginAuthorize(RoleList = "Admin")]
         public ActionResult Index()
         {
             return View();
