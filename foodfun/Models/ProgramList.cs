@@ -18,5 +18,8 @@ namespace foodfun.Models
         public Nullable<int> parentid { get; set; }
         public string pro_no { get; set; }
         public string pro_name { get; set; }
+        public string controller_name { get; set; }
+        public string action_name { get; set; }
+
     }
 }

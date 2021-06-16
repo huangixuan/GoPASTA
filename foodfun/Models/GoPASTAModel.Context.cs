@@ -35,12 +35,14 @@ namespace foodfun.Models
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductsProperty> ProductsProperty { get; set; }
-        public virtual DbSet<ProgramList> ProgramList { get; set; }
+
         public virtual DbSet<Propertys> Propertys { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<OrdersDetails> OrdersDetails { get; set; }
+        public virtual DbSet<ProgramList> ProgramList { get; set; }
+
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

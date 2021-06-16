@@ -35,5 +35,6 @@ namespace foodfun.Models
         public Nullable<bool> cancelorder { get; set; }
         public string cancelreason { get; set; }
         public string remark { get; set; }
+        public string order_guid { get; set; }
     }
 }

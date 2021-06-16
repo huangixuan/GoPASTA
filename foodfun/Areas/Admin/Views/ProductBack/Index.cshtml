@@ -1,0 +1,116 @@
+﻿@model IEnumerable<foodfun.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>商品基本資料</h2>
+
+<p>
+    @Html.ActionLink("新增記錄", "Create", "ProductBack", null, new { @class = "btn btn-primary" })
+</p>
+
+<nav class="full-width">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.product_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.product_spec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category_no)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price_avgcost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price_sale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.discount_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock_qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.image_path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.browse_count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.istop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.issale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ishot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.remark)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.product_spec)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_no)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price_avgcost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price_sale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.discount_price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.stock_qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.image_path)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.browse_count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.istop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.issale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ishot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.remark)
+                </td>
+                <td>
+                    @Html.ActionLink("修改", "Edit", "ProductBack", new { id = item.product_no }, new { @class = "btn btn-info" })
+                    @*@Html.ActionLink("明細", "Details", "Product", new { id = item.product_no }, new { @class = "btn btn-primary" })*@
+                    @Html.ActionLink("刪除", "Delete", "ProductBack", new { id = item.product_no }, new { @class = "btn btn-success", onclick="return confirm('是否確定要刪除?')" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</nav>
