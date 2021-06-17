@@ -404,8 +404,8 @@ public static class Cart
                     db.SaveChanges();
                     //db.Carts.Remove(item);
                 }
-                //db.Carts.RemoveRange(datas);
-                    db.SaveChanges();
+                db.Carts.RemoveRange(datas);
+                db.SaveChanges();
             }
 
 
