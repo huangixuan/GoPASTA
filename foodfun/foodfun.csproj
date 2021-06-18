@@ -217,6 +217,7 @@
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\MealServiceViewModel.cs" />
     <Compile Include="Models\ViewModel\ConfirmationViewModel.cs" />
+    <Compile Include="Models\ViewModel\OrdersViewModel.cs" />
     <Compile Include="Models\ViewModel\ResetPasswordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -824,11 +825,11 @@
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\MemberOrder\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\MemberOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

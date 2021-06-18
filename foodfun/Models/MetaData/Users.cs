@@ -13,7 +13,7 @@ namespace foodfun.Models
         {
 
             [Key]
-            public int mno { get; set; }
+            public string mno { get; set; }
 
             /// <summary>
             /// 姓名
