@@ -1,0 +1,108 @@
+﻿@model IEnumerable<foodfun.Models.OrdersViewModel>
+
+@{
+    ViewBag.Title = "歷史訂單";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="section_padding">
+    <div class="container">
+
+
+
+        <table class="table" id="nowOrder" style="display:none">
+            <thead>
+                <tr><th colspan="5" class="h3 text-center table-danger "> 進行中訂單 </th></tr>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.order_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ispaided)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderstatus_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.total)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.Partial("~/Views/MemberOrder/_PartialOrder.cshtml")
+            </tbody>
+
+        </table>
+
+
+
+        <div class="table-responsive">
+            <table class="table  ">
+
+
+                <thead>
+                    <tr><th colspan="5" class="h3 text-center table-secondary"> @ViewBag.Title </th></tr>
+
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.order_date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ispaided)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.orderstatus_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @Html.HiddenFor(modelItem => item.order_no)
+                            <td>
+                                @Html.DisplayFor(modelItem => item.order_date)
+                                <br>
+                                @Html.DisplayFor(modelItem => item.mealservice_name)
+                            </td>
+                            <td>
+                                @(item.ispaided.Value ? "已結帳" : "未結帳")
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.orderstatus_name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.total)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("檢視明細", "Details", new { /* id=item.PrimaryKey */ })
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</section>
+
+@if (Order.IsNowOrder)
+{
+    <script>
+        $("#nowOrder").show();
+    </script>
+}
+
+

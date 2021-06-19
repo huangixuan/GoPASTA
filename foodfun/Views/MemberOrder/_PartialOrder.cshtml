@@ -1,0 +1,33 @@
+﻿@{ var nowOrderList = Order.GetOrderList(false);}
+
+
+
+@foreach (var item in nowOrderList)
+{
+    <tr>
+        @Html.HiddenFor(modelItem => item.order_no)
+        <td>
+            @Html.DisplayFor(modelItem => item.order_date)
+            <br>
+            @Html.DisplayFor(modelItem => item.mealservice_name)
+        </td>
+        <td>
+            @(item.ispaided.Value ? "已結帳" : "未結帳")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.orderstatus_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+
+        <td>
+            @Html.ActionLink("檢視明細", "Details", new { /* id=item.PrimaryKey */ })
+
+        </td>
+    </tr>
+}
+
+
+
+

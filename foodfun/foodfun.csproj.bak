@@ -826,10 +826,13 @@
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Shared\_PartialMenuAdmin.cshtml" />
     <Content Include="Views\Shared\_PartialMenuStaff.cshtml" />
+=======
     <Content Include="Views\MemberOrder\Index.cshtml" />
     <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
+>>>>>>> miiw
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,7 +36,9 @@ public static class Cart
     /// 購物車筆數
     /// </summary>
     public static int Counts { get { return GetCartCount(); } }
-
+    /// <summary>
+    /// 購物車商品數量
+    /// </summary>
     public static int Count_Prop_Num { get { return GetPropNum(); } }
 
 
@@ -404,8 +406,8 @@ public static class Cart
                     db.SaveChanges();
                     //db.Carts.Remove(item);
                 }
-                //db.Carts.RemoveRange(datas);
-                    db.SaveChanges();
+                db.Carts.RemoveRange(datas);
+                db.SaveChanges();
             }
 
 
