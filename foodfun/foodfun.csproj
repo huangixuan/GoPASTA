@@ -823,6 +823,8 @@
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_PartialMenuAdmin.cshtml" />
+    <Content Include="Views\Shared\_PartialMenuStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
