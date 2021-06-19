@@ -134,6 +134,7 @@
     <Compile Include="App_Class\EnumList.cs" />
     <Compile Include="App_Class\GmailService.cs" />
     <Compile Include="App_Class\LoginAuthorize.cs" />
+    <Compile Include="App_Class\Order.cs" />
     <Compile Include="App_Class\Shop.cs" />
     <Compile Include="App_Class\UserAccount.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -826,6 +827,7 @@
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\MemberOrder\Index.cshtml" />
+    <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

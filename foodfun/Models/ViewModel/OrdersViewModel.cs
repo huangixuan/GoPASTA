@@ -11,21 +11,25 @@ namespace foodfun.Models
         [Display(Name = "訂單編號")]
         public string order_no { get; set; }
 
-        [Display(Name = "訂單日期")]
+        [Display(Name = "訂單資訊")]
         public Nullable<System.DateTime> order_date { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:C0}")]
         [Display(Name = "總計")]
         public Nullable<decimal> total { get; set; }
 
 
-        [Display(Name = "是否結帳")]
+        [Display(Name = "結帳")]
         public Nullable<bool> ispaided { get; set; }
 
 
         [Display(Name = "訂單狀態")]
         public string orderstatus_name { get; set; }
 
-        [Display(Name = "用餐方式編碼")]
+        [Display(Name = "用餐方式")]
         public string mealservice_name { get; set; }
+
+        //public Nullable<bool> isclosed { get; set; }
 
 
     }

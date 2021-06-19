@@ -54,7 +54,7 @@
                                      <ul class="submenu">
                                          <li> @Html.ActionLink("會員中心", "UserInfo", "User", new { no = UserAccount.UserNo }, "")</li>
                                          <li>@Html.ActionLink("修改密碼", "ResetPassword", "User", "", "")</li>
-                                         <li>@Html.ActionLink("訂單查詢", "OrderInfo", "User", new { no = UserAccount.UserNo }, "")</li>
+                                         <li>@Html.ActionLink("訂單查詢", "Index", "MemberOrder", new { no = UserAccount.UserNo }, "")</li>
                                          <li>@Html.ActionLink("登出", "Logout", "User", new { no = UserAccount.UserNo }, new { @class = "fas fa-sign-out-alt" })</li>
                                      </ul>
                               
