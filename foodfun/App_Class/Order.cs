@@ -34,20 +34,35 @@ using foodfun.Models;
             List<OrdersViewModel> ordersViewModels = new List<OrdersViewModel>();
             for (int i = 0; i < num; i++)
             {
-                string orders_no = order[i].orderstatus_no;
+                string status_no = order[i].orderstatus_no;
                 string meal_no = order[i].mealservice_no;
+                string order_no = order[i].order_no;
 
                 ordersViewModels.Add(new OrdersViewModel()
                 {
-                    order_no = order[i].order_no,
+
+                    order_no = order_no,
                     order_date = order[i].order_date,
                     total = order[i].total,
                     ispaided = order[i].ispaided,
-                    orderstatus_name = db.OrderStatus.Where(m => m.orderstatus_no == orders_no).FirstOrDefault().orderstatus_name,
-                    mealservice_name = db.MealService.Where(m => m.mealservice_no == meal_no).FirstOrDefault().mealservice_name
+                    orderDetails = db.OrdersDetails.Where(m => m.order_no == order_no).OrderBy(m => m.rowid).ToList(),
+                    orderstatus_name = db.OrderStatus.Where(m => m.orderstatus_no == status_no).FirstOrDefault().orderstatus_name,
+                    mealservice_name = db.MealService.Where(m => m.mealservice_no == meal_no).FirstOrDefault().mealservice_name,
+                    
                 });
             }
             return ordersViewModels;
+        }
+    }
+
+
+    public static List<OrdersDetails> GetOrderDetails(string order_no) 
+    {
+        using (GoPASTAEntities db = new GoPASTAEntities()) 
+        {
+            var detailList = db.OrdersDetails.Where(m => m.order_no == order_no).ToList();
+            return detailList;
+        
         }
     }
 

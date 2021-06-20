@@ -369,6 +369,7 @@
     <Content Include="img\logo.png" />
     <Content Include="img\logo2.png" />
     <Content Include="img\logoicon.png" />
+    <Content Include="img\OrderDiolog.jpg" />
     <Content Include="img\pasta\003.jpg" />
     <Content Include="img\pasta\004.jpg" />
     <Content Include="img\pasta\005.jpg" />
@@ -830,6 +831,7 @@
     <Content Include="Views\Shared\_PartialMenuStaff.cshtml" />
     <Content Include="Views\MemberOrder\Index.cshtml" />
     <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
+    <Content Include="Views\MemberOrder\_PartialOrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

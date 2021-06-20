@@ -29,8 +29,8 @@ namespace foodfun.Models
         [Display(Name = "用餐方式")]
         public string mealservice_name { get; set; }
 
-        //public Nullable<bool> isclosed { get; set; }
-
+        
+        public List<OrdersDetails> orderDetails { get; set; }
 
     }
 }
