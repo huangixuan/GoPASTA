@@ -267,7 +267,6 @@
     <Content Include="AdminBack\assets\js\main.js" />
     <Content Include="AdminBack\assets\js\vmap.sampledata.js" />
     <Content Include="AdminBack\assets\js\widgets.js" />
-    <Content Include="AdminBack\assets\scss\style.css" />
     <Content Include="AdminBack\charts-chartjs.html" />
     <Content Include="AdminBack\charts-flot.html" />
     <Content Include="AdminBack\charts-peity.html" />
@@ -399,12 +398,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AdminBack\.github\ISSUE_TEMPLATE.md" />
-    <Content Include="AdminBack\assets\css\style.css.map" />
     <Content Include="AdminBack\assets\fonts\icomoon\icomoon.eot" />
     <Content Include="AdminBack\assets\fonts\icomoon\icomoon.ttf" />
     <Content Include="AdminBack\assets\fonts\icomoon\icomoon.woff" />
-    <Content Include="AdminBack\assets\scss\style.css.map" />
-    <Content Include="AdminBack\assets\scss\style.scss" />
     <Content Include="AdminBack\images\logo.psd" />
     <Content Include="AdminBack\README.md" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
@@ -827,11 +823,8 @@
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuAdmin.cshtml" />
-    <Content Include="Views\Shared\_PartialMenuStaff.cshtml" />
     <Content Include="Views\MemberOrder\Index.cshtml" />
     <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
-    <Content Include="Views\MemberOrder\_PartialOrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

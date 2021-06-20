@@ -50,7 +50,7 @@
                             @if (UserAccount.Role == EnumList.LoginRole.Member)
                             {
                                  <li>
-                                     <a href="#"><span class="flaticon-user">   @UserAccount.UserName</span></a>
+                                     <a href="#"><span class="flaticon-user"> @UserAccount.UserName</span></a>
                                      <ul class="submenu">
                                          <li> @Html.ActionLink("會員中心", "UserInfo", "User", new { no = UserAccount.UserNo }, "")</li>
                                          <li>@Html.ActionLink("修改密碼", "ResetPassword", "User", "", "")</li>

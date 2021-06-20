@@ -972,7 +972,9 @@ header .form-inline {
       display: none; }
 
 .header-left {
-  display: inline-block; }
+  display: inline-block; 
+  line-height:50px;
+}
 
 .header-left.open .form-inline {
   display: block; }
