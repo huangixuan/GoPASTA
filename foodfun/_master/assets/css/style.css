@@ -11397,3 +11397,88 @@ input:focus {
         font-size: 30px
     }
 }
+
+
+.itemwidth {
+    background-color: #f8f9fa;
+    width: 1500px;
+}
+
+.scrollmenu {
+    /*background-color: red;*/
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 1170px;
+}
+
+    .scrollmenu a {
+        white-space: nowrap;        
+    }
+        
+    .scrollmenu a {
+        
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        border-radius:30px 30px 30px 30px;
+    }
+
+        .scrollmenu a:hover {
+            background-color: #b82727;
+        }
+
+
+.aboutCont {
+    margin:10px;
+    padding: 2rem 0.15rem 0.3rem 0.15rem;
+    position: relative;
+    overflow: hidden;
+}
+.aboutCont.col #banner {
+        height: 50px;
+    }
+    .col #banner img{        
+        background-size: cover;
+        background-position: center;
+        height: 50px;
+        padding:10px;
+    }
+
+.aboutCont .mainAC {
+    background-color: red;
+    height: 800px;
+    padding:10px;
+}
+    .aboutCont .mainAC p {
+        display: inline-block;
+        color: black;
+        text-align: left;
+    }
+.aboutCont .subAC subAC1 {
+    height: 120px;
+}
+    .aboutCont .subAC subAC1 h1, h2, a {
+        color:darkseagreen;
+    }
+
+.aboutCont .subAC subAC2 {
+    height: 120px;
+}
+    .aboutCont .subAC subAC2 h1, h2, a {
+        color: darkorange;
+    }
+
+.aboutCont .subAC subAC3 {
+    height: 120px;
+}
+    .aboutCont .subAC subAC3 h1, h2, a {
+        color: darkseagreen;
+    }
+.aboutCont.subAC subAC4 {
+    height: 120px;
+}
+    .aboutCont .subAC subAC4 h1, h2, a a {
+        color: darkorange;
+    }

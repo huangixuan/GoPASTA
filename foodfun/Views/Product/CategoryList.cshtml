@@ -23,14 +23,26 @@
             <div class="properties__button">
                 <!--Nav Button  -->
                 <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link bg-danger mx-2" id="nav-home-tab" @*data-toggle="tab"*@ href="/Product/CategoryList/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
-                        @foreach (var item in categorys)
-                        {
-                            @*@Html.ActionLink(@item.category_name, "CategoryList","Product",new {id = @item.category_no},new {@class= "nav-item nav-link" , data_toggle = "tab" } )*@
-                            <a class="nav-item nav-link bg-danger mx-2" href="/Product/CategoryList/@item.category_no">@item.category_name</a>
-                        }
+                    @*
+        <div class="  nav nav-tabs " id="nav-tab" role="tablist"  >
+            <a class="nav-item nav-link bg-danger mx-2" id="nav-home-tab"   data-toggle="tab" href="/Product/CategoryList/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
+            @foreach (var item in categorys)
+            {
+                @Html.ActionLink(@item.category_name, "CategoryList","Product",new {id = @item.category_no},new {@class= "nav-item nav-link" , data_toggle = "tab" } )
+                <a class="nav-item nav-link bg-danger mx-2"  href="/Product/CategoryList/@item.category_no">@item.category_name</a>
+            }
+        </div>
+                    *@
+                    <div class="scrollmenu ">
+                        <div class="itemwidth ">
+                            <a class="nav-item nav-link bg-danger mx-2 px-4 py-3" id="nav-home-tab" data-toggle="" href="/Product/CategoryList/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
+                            @foreach (var item in categorys)
+                            {
+                                <a class="nav-item nav-link bg-danger mx-2 px-4 py-3" href="/Product/CategoryList/@item.category_no">@item.category_name</a>
+                            }
+                        </div>
                     </div>
+
 
                 </nav>
 
