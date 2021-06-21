@@ -76,7 +76,9 @@
                             </div>
                         </div>
                         //=========================modal======================
-
+                        using (Html.BeginForm())
+                        {
+                            Html.AntiForgeryToken();
 
                             <div class="modal fade" id="@item.product_no" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
@@ -158,8 +160,10 @@
                                 </div>
                             </div>
                         }
+
                         @*=========================modal end======================*@
-                  
+
+                    }
 
                 </div>
             </div>
