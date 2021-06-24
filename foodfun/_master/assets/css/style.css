@@ -10999,7 +10999,7 @@ input:focus {
     }
 
     .confirmation_part .single_confirmation_details ul li span {
-        color: "Roboto",sans-serif
+        color: "Roboto",sans-serif;
     }
 
 .confirmation_part .order_details_iner {
@@ -11394,6 +11394,97 @@ input:focus {
 
 @media (max-width: 991px) {
     .breadcrumb_part .breadcrumb_iner h2 {
-        font-size: 30px
+        font-size: 30px;
     }
 }
+
+
+
+.properties__button .scrollmenu {
+    /*background-color: red;*/
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+    .properties__button .scrollmenu a {
+        white-space: nowrap;
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+        border-radius:30px 30px 30px 30px;}
+
+
+
+        .properties__button .scrollmenu a:hover {
+            background-color: #b82727;
+        }
+
+
+.aboutCont {
+    margin: 10px;
+    padding: 2rem 0.15rem 0.3rem 0.15rem;
+    position: relative;
+    overflow: hidden;
+    font-family: "Josefin Sans",sans-serif;
+}
+    .aboutCont.carousel-inner {
+        height: 100px;
+        width: 100%;
+        margin-bottom:20px;
+    }
+.col .banner img {
+    height: 100px;
+    width: 50%;
+}
+
+.aboutCont .about-pro{
+    height:auto;
+    background-color:lightsalmon;
+    padding-top:50px;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.aboutCont .text-muted {
+    color: lightsalmon;
+}
+    .aboutCont .ac1{
+    margin:0px;
+}
+
+.aboutCont .ac2 {
+    margin-left: 0px;
+}
+
+.contact .cont {
+    background-color: lightsalmon;
+    width:500px;
+    margin-top:100px;
+    padding-top:50px;
+    padding-left:50px;    
+ }
+
+.contact .cfBtn {
+    background-color:red;
+    color:black;
+    transition:all 0.5s;
+    }
+
+.contact .cfBtn:hover {
+    transform:scale(0.85, 0.85);
+    opacity:0.65;
+    
+}
+
+
+
+
+
+
+
+
+
+
+

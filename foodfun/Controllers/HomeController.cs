@@ -1,4 +1,5 @@
-﻿using System;
+﻿using foodfun.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,12 @@ namespace foodfun.Controllers
 {
     public class HomeController : Controller
     {
+        GoPASTAEntities db;
+        public HomeController()
+        {
+            db = new GoPASTAEntities();
+        }
+
         [LoginAuthorize(RoleList ="")]
         public ActionResult Index()
         {
@@ -16,7 +23,6 @@ namespace foodfun.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }

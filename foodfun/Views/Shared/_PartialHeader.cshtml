@@ -12,8 +12,8 @@
                     <div class="main-menu d-none d-lg-block ">
                         <nav>
                             <ul id="navigation">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="shop.html">shop</a>
+                                <li><a href='@Url.Action("Index", "Home")'>Home</a></li>
+                                <li><a href='@Url.Action("CategoryList", "Product")'>shop</a>
                                     <ul class="submenu">
                                         <li><a href="#"> Product list</a></li>
                                         <li><a href="#"> Product Details</a></li>
@@ -21,12 +21,12 @@
                                 
                                 </li>
 
-
-                                <li><a href="about.html">about</a></li>
-                               
+                                <li>
+                                    <a href='@Url.Action("about", "Home")'>about</a>                                    
+                                </li>                            
                               
                                 
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href='@Url.Action("Contact", "Home")'>Contact</a></li>
                             </ul>
                         </nav>
                     </div>
