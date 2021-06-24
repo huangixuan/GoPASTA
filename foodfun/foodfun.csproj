@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Class\AdminCart.cs" />
     <Compile Include="App_Class\AppMail.cs" />
     <Compile Include="App_Class\AppService.cs" />
     <Compile Include="App_Class\BaseClass.cs" />
@@ -433,6 +434,7 @@
     <Content Include="Models\GoPASTA.edmx.diagram">
       <DependentUpon>GoPASTA.edmx</DependentUpon>
     </Content>
+<<<<<<< HEAD
     <Content Include="Areas\Admin\Views\Categorys\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Categorys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categorys\Index.cshtml" />
@@ -440,6 +442,11 @@
     <Content Include="Areas\Admin\Views\Propertys\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Propertys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Propertys\Index.cshtml" />
+=======
+    <Content Include="Areas\Staff\Views\web.config" />
+    <Content Include="Areas\Staff\Views\StaffHome\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\StaffHome\_PartialOrderBox.cshtml" />
+>>>>>>> 917390f (Order BOX 0624)
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -853,6 +860,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+<<<<<<< HEAD
+=======
+    <Folder Include="Areas\Admin\Views\AdminHome\" />
+    <Folder Include="Areas\Staff\Data\" />
+    <Folder Include="Areas\Staff\Views\Shared\" />
+    <Folder Include="Views\AdminCart\" />
+>>>>>>> 917390f (Order BOX 0624)
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
