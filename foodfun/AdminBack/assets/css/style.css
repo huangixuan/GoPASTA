@@ -821,9 +821,11 @@ aside.left-panel {
 
 /* Right panel */
 .right-panel {
-  /*background: #f1f2f7;*/
-  margin-left: 280px;
-  margin-top: 55px; }
+    /*background: #f1f2f7;*/
+   /* margin-left: 280px;*/
+    margin-left: 340px;
+    margin-top: 55px;
+}
   .right-panel .top-left {
     width: 350px;
     float: left; }
@@ -1198,7 +1200,7 @@ header .form-inline {
 
 .content {
   float: left;
-  padding: 1.875em;
+  /*padding: 1.875em;*/
   width: 100%; }
 
 .card {
