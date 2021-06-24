@@ -139,6 +139,7 @@
     <Compile Include="App_Class\Cryptographys.cs" />
     <Compile Include="App_Class\EnumList.cs" />
     <Compile Include="App_Class\GmailService.cs" />
+    <Compile Include="App_Class\ImageService.cs" />
     <Compile Include="App_Class\LoginAuthorize.cs" />
     <Compile Include="App_Class\Order.cs" />
     <Compile Include="App_Class\Shop.cs" />
@@ -149,7 +150,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategorysController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductBackController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PropertysController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemberOrderController.cs" />
@@ -182,9 +185,11 @@
     <Compile Include="Models\MealService.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaData\Categorys.cs" />
     <Compile Include="Models\MetaData\Orders.cs" />
     <Compile Include="Models\MetaData\Products.cs" />
     <Compile Include="Models\MetaData\ProgramList.cs" />
+    <Compile Include="Models\MetaData\Propertys.cs" />
     <Compile Include="Models\MetaData\Users.cs" />
     <Compile Include="Models\MetaData\Carts.cs" />
     <Compile Include="Models\Orders.cs">
@@ -389,6 +394,10 @@
     <Content Include="img\product\A02\A020001.jpg" />
     <Content Include="img\product\A02\A020002.jpg" />
     <Content Include="img\product\B01\B010001.jpg" />
+    <Content Include="img\product\B01\B010002.jpg" />
+    <Content Include="img\product\B01\B010003.jpg" />
+    <Content Include="img\product\B02\B020001.jpg" />
+    <Content Include="img\product\B02\B020002.jpg" />
     <Content Include="img\product\C01\C010001.jpg" />
     <Content Include="img\product\C01\C010002.jpg" />
     <Content Include="Models\GoPASTA.Context.tt">
@@ -427,6 +436,10 @@
     <Content Include="Areas\Admin\Views\Categorys\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Categorys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Categorys\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Image\UploadImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Propertys\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Propertys\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Propertys\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />

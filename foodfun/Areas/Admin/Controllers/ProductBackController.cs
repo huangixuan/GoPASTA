@@ -22,6 +22,7 @@ namespace foodfun.Areas.Admin.Controllers
 
             }
         }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -107,7 +108,24 @@ namespace foodfun.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+       
+        public ActionResult Upload( string product_no)
+        {
+            using (GoPASTAEntities db = new GoPASTAEntities())
+            {
+                var model = db.Products.Where(m => m.product_no == product_no).FirstOrDefault();
 
+                ImageService.ReturnAction("", "ProductBack", "Index");               
+                ImageService.ImageTitle = string.Format("{0} {1} 圖片上傳", model.product_no, model.product_name);
+                ImageService.ImageTitle = string.Format("圖片上傳");
+                ImageService.ImageFolder = "~/img/product";
+                ImageService.ImageSubFolder = model.category_no;
+                ImageService.ImageName = model.product_no;
+                ImageService.ImageExtention = "jpg";
+                ImageService.UploadImageMode = true;
+                return RedirectToAction("UploadImage", "Image");
+            }
+        }
 
 
 

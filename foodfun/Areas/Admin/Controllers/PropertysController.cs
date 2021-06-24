@@ -7,49 +7,49 @@ using foodfun.Models;
 
 namespace foodfun.Areas.Admin.Controllers
 {
-    public class CategorysController : Controller
+    public class PropertysController : Controller
     {
-        [LoginAuthorize(RoleList = "Admin")]
+        // GET: Admin/Propertys
         public ActionResult Index()
         {
+            // return View(repo_product.ReadAll().OrderBy(m => m.mno));
+
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                return View(db.Categorys.OrderBy(m => m.category_no).ToList());
+                return View(db.Propertys.OrderBy(m => m.rowid).ToList());
 
             }
         }
-
 
         public ActionResult Create()
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
 
-                Categorys model = new Categorys();
-                
+                Propertys model = new Propertys();
+
                 return View(model);
 
             }
         }
 
         [HttpPost]
-        public ActionResult Create(Categorys model)
+        public ActionResult Create(Propertys model)
         {
             if (!ModelState.IsValid) return View(model);
-           
+
 
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                db.Categorys.Add(model);
+                db.Propertys.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
 
-     
         [HttpGet]
         [LoginAuthorize(RoleList = "Admin")]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
@@ -58,25 +58,26 @@ namespace foodfun.Areas.Admin.Controllers
                 //    Categorys new_model = new Categorys();
                 //    return View(new_model);
                 //}
-                var models = db.Categorys.Where(m => m.category_no == id).FirstOrDefault();
+                var models = db.Propertys.Where(m => m.rowid == id).FirstOrDefault();
                 return View(models);
             }
         }
 
         [HttpPost]
         [LoginAuthorize(RoleList = "Admin")]
-        public ActionResult Edit(Categorys model)
+        public ActionResult Edit(Propertys model)
         {
 
             if (!ModelState.IsValid) return View(model);
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                var data = db.Categorys.Where(m => m.category_no == model.category_no).FirstOrDefault();
-                data.rowid = model.rowid;
-                data.parentid = model.parentid;
-                data.category_no = model.category_no;
-                data.category_name = model.category_name;
-
+                var data = db.Propertys.Where(m => m.property_no == model.property_no).FirstOrDefault();
+               // data.rowid = model.rowid;
+                data.property_no = model.property_no;
+                data.property_name = model.property_name;
+                data.add_price = model.add_price;
+                data.property_value = model.property_value;
+                data.remark = model.remark;
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,23 +85,23 @@ namespace foodfun.Areas.Admin.Controllers
 
         }
 
-       
-
         [HttpGet]
 
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                var model = db.Categorys.Where(m => m.category_no == id).FirstOrDefault();
+                var model = db.Propertys.Where(m => m.rowid == id).FirstOrDefault();
                 if (model != null)
                 {
-                    db.Categorys.Remove(model);
+                    db.Propertys.Remove(model);
                     db.SaveChanges();
                 }
                 //return RedirectToAction("Index", "Product");    //Product為controller可略,會以目前controller為主
                 return RedirectToAction("Index");
             }
         }
+
+
     }
 }
