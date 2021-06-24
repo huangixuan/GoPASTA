@@ -4,22 +4,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using foodfun.Models;
+using PagedList;
+
 
 
 namespace foodfun.Areas.Admin.Controllers
 {
     public class ProductBackController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
             // return View(repo_product.ReadAll().OrderBy(m => m.mno));
 
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                return View(db.Products.OrderBy(m => m.product_no).ToList());
+                return View(db.Products.OrderBy(m => m.product_no).ToPagedList(page, pageSize));
 
             }
         }
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -105,7 +108,24 @@ namespace foodfun.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+       
+        public ActionResult Upload( string product_no)
+        {
+            using (GoPASTAEntities db = new GoPASTAEntities())
+            {
+                var model = db.Products.Where(m => m.product_no == product_no).FirstOrDefault();
 
+                ImageService.ReturnAction("", "ProductBack", "Index");               
+                ImageService.ImageTitle = string.Format("{0} {1} 圖片上傳", model.product_no, model.product_name);
+                ImageService.ImageTitle = string.Format("圖片上傳");
+                ImageService.ImageFolder = "~/img/product";
+                ImageService.ImageSubFolder = model.category_no;
+                ImageService.ImageName = model.product_no;
+                ImageService.ImageExtention = "jpg";
+                ImageService.UploadImageMode = true;
+                return RedirectToAction("UploadImage", "Image");
+            }
+        }
 
 
 

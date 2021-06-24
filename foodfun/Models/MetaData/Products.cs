@@ -33,7 +33,7 @@ namespace foodfun.Models
             [DisplayFormat(ConvertEmptyStringToNull = false, HtmlEncode = true, NullDisplayText = "請輸入商品規格")]
             public string product_spec { get; set; }
 
-            [Display(Name = "子類別編號")]
+            [Display(Name = "類別編號")]
             public string category_no { get; set; }
 
 
@@ -50,7 +50,7 @@ namespace foodfun.Models
             [Display(Name ="庫存數量")]
             public string stock_qty { get; set; }
            
-            [Display(Name ="產品圖片路徑")]
+            [Display(Name ="產品圖片")]
             public string image_path { get; set; }
 
             [Display(Name="商品描述")]
