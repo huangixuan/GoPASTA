@@ -1,17 +1,46 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>*@
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="contact">
+    <div class="container-fluid ">
+        <div class="col d-flex justify-content-center aling-items-center ">
+            <div class="col-lg-3  cont">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                        <h3>Buttonwood, California.</h3>
+                        <p>Rosemead, CA 91770</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                        <h3>+1 253 565 2365</h3>
+                        <p>Mon to Fri 9am to 6pm</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                        <h3>support@colorlib.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+    </div>
+    <div class="container-fluid">
+        <div class="col d-flex justify-content-center aling-items-center" onclick="golink()">
+            <div class="btn btn-lg border-light  cfBtn">
+                <h2> Contect Us</h2>
+            </div>
+        </div>
+</div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+
