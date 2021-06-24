@@ -158,6 +158,7 @@
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -854,6 +855,8 @@
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\MemberOrder\Index.cshtml" />
+    <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

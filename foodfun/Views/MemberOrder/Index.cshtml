@@ -1,0 +1,166 @@
+﻿@model IEnumerable<foodfun.Models.OrdersViewModel>
+
+@{
+    ViewBag.Title = "歷史訂單";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .popOrder {
+        background-color: #f3b620;
+    }
+
+        .popOrder div {
+            border: none;
+        }
+</style>
+
+
+<section class="section_padding">
+    <div class="container">
+
+
+
+        <table class="table" id="nowOrder" style="display:none">
+            <thead>
+                <tr><th colspan="5" class="h3 text-center table-warning "> 進行中訂單 </th></tr>
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.order_date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ispaided)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.orderstatus_name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.total)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.Partial("~/Views/MemberOrder/_PartialOrder.cshtml")
+            </tbody>
+
+        </table>
+
+
+
+        <div class="table-responsive">
+            <table class="table  ">
+
+
+                <thead>
+                    <tr><th colspan="5" class="h3 text-center table-secondary"> @ViewBag.Title </th></tr>
+
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.order_date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ispaided)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.orderstatus_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.total)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                </thead>
+
+                @foreach (var item in Model)
+                {
+
+
+
+                    <tr>
+                        @Html.HiddenFor(modelItem => item.order_no)
+                        <td>
+                            @Html.DisplayFor(modelItem => item.order_date)
+                            <br>
+                            @Html.DisplayFor(modelItem => item.mealservice_name)
+                        </td>
+                        <td>
+                            @(item.ispaided.Value ? "已結帳" : "未結帳")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.orderstatus_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.total)
+                        </td>
+
+                        <td>
+                            <button data-toggle="modal" data-target="#@item.order_no" class="btn btn-secondary">檢視明細</button>
+                            @*@Html.ActionLink("檢視明細", "Details", new { /* id=item.PrimaryKey */ })*@
+
+                        </td>
+                    </tr>
+
+                    <div class="modal fade" id="@item.order_no" tabindex="-1" role="dialog" aria-hidden="true">
+
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content  popOrder">
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-center" id="exampleModalLabel"> 訂餐明細</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <span>@item.order_date</span>
+                                    <span class="float-right">用餐金額: $@item.total </span>
+
+
+
+                                    <div class="mt-4">
+                                        @foreach (var item1 in item.orderDetails)
+                                        {
+                                            <span>@item1.qty x </span>
+
+                                            <span class="h5">@Shop.GetProductName(item1.product_no)</span>
+                                            <span class="h6">@item1.Property_select</span>
+
+                                            <span class="float-right">$@item1.each_item_amount</span>
+                                            <hr />
+                                        }
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <img src="~/img/OrderDiolog.jpg" width="100%" />
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                }
+
+
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+@if (Order.IsNowOrder)
+{
+    <script>
+        $("#nowOrder").show();
+    </script>
+}
+
