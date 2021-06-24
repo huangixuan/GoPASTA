@@ -291,8 +291,8 @@ namespace foodfun.Controllers
         {
 
 
-            if (UserAccount.Role == EnumList.LoginRole.Admin) return RedirectToAction("Index", "Admin", new { area = "Admin" });
-            if (UserAccount.Role == EnumList.LoginRole.Staff) return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            if (UserAccount.Role == EnumList.LoginRole.Admin) return RedirectToAction("Index", "StaffHome", new { area = "Staff" });
+            if (UserAccount.Role == EnumList.LoginRole.Staff) return RedirectToAction("Index", "StaffHome", new { area = "Staff" });
             return RedirectToAction("Index", "Home");
         }
 

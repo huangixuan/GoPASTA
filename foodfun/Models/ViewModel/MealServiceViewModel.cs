@@ -16,7 +16,6 @@ namespace foodfun.Models
         [Display(Name ="桌號")]
         public string Table_no { get; set; }
 
-
         [Display(Name ="取餐時間")]
         public DateTime SchedulOrderTime { get; set; } = DateTime.Now;
 
