@@ -10061,7 +10061,7 @@ input:focus {
     }
 
 .order_box {
-    background: #f7f7f7;
+    background: #f1f1f1;
     padding: 30px
 }
 
@@ -10073,7 +10073,7 @@ input:focus {
         padding-bottom: 15px
     }
 
-    .order_box .list li a {
+    .order_box .list li  {
         font-size: 14px;
         color: #828bb2;
         font-weight: normal;
@@ -10082,11 +10082,11 @@ input:focus {
         line-height: 42px
     }
 
-        .order_box .list li a span {
+        .order_box .list li  span {
             float: right
         }
 
-        .order_box .list li a .middle {
+        .order_box .list li  .middle {
             float: none;
             width: 50px;
             text-align: right;
@@ -10095,22 +10095,22 @@ input:focus {
             color: #415094
         }
 
-    .order_box .list li:nth-child(4) a .middle {
+    .order_box .list li:nth-child(4)  .middle {
         margin-left: 48px
     }
 
-    .order_box .list_2 li a {
+    .order_box .list_2 li  {
         text-transform: uppercase;
         color: #415094;
         font-weight: 500
     }
 
-        .order_box .list_2 li a span {
+        .order_box .list_2 li  span {
             color: #828bb2;
             text-transform: capitalize
         }
 
-    .order_box .list_2 li:last-child a span {
+    .order_box .list_2 li:last-child  span {
         color: #415094
     }
 

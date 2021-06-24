@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Class\AdminCart.cs" />
     <Compile Include="App_Class\AppMail.cs" />
     <Compile Include="App_Class\AppService.cs" />
     <Compile Include="App_Class\BaseClass.cs" />
@@ -153,9 +154,10 @@
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductBackController.cs" />
     <Compile Include="Areas\Admin\Controllers\PropertysController.cs" />
+    <Compile Include="Areas\Staff\Controllers\StaffHomeController.cs" />
+    <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MemberOrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,6 +169,7 @@
     <Compile Include="Models\Categorys.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data\Carts\CartTemp.cs" />
     <Compile Include="Models\GoPASTA.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,6 +233,7 @@
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\MealServiceViewModel.cs" />
     <Compile Include="Models\ViewModel\ConfirmationViewModel.cs" />
+    <Compile Include="Models\ViewModel\MemberOrderViewModel.cs" />
     <Compile Include="Models\ViewModel\OrdersViewModel.cs" />
     <Compile Include="Models\ViewModel\ResetPasswordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -440,6 +444,9 @@
     <Content Include="Areas\Admin\Views\Propertys\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Propertys\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Propertys\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\web.config" />
+    <Content Include="Areas\Staff\Views\StaffHome\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\StaffHome\_PartialOrderBox.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -847,12 +854,14 @@
     <Content Include="Views\CheckOut\Confirmation.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\MemberOrder\Index.cshtml" />
-    <Content Include="Views\MemberOrder\_PartialOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\AdminHome\" />
+    <Folder Include="Areas\Staff\Data\" />
+    <Folder Include="Areas\Staff\Views\Shared\" />
+    <Folder Include="Views\AdminCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

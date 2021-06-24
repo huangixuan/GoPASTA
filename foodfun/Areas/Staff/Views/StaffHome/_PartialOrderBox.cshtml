@@ -1,0 +1,73 @@
+﻿@{ var currentCart = foodfun.Models.CartTemp.GetCurrentCart();}
+<div class="border-bottom border-secondary  my-3">
+    <div>
+        <ul class="list">
+            <li>商品<span>小計</span></li>
+
+            @foreach (var item in currentCart.cartItems)
+                {
+
+
+        <li>
+            @Shop.GetProductName(item.product_no)
+            <span class="middle">x @item.qty</span>
+            <span class="last">$@item.each_item_amount</span>
+
+
+            @{List<SelectListItem> lists = Shop.GetPropertyList(item.product_no);}
+
+            @if (lists != null)
+            {
+
+                foreach (var item1 in lists)
+                {
+
+                    <div class="section">
+                        <span class="col-form-label">@item1.Text   </span>
+
+                        <div class="form-check form-check-inline">
+                            @{
+                                List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split('/').ToList();
+                                foreach (var value in prop_values)
+                                {
+                                    @Html.RadioButton(@item1.Value, @value, new { @class = "form-check-input" })
+                                    @Html.Label(item1.Value, @value, new { @class = "form-check-label" })
+
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+
+                }
+
+
+           
+
+        </ul>
+    </div>
+</div>
+<ul class="list list_2">
+
+    <li>
+        <a href="#">
+            總計
+            <span> @currentCart.TotalAmount</span>
+        </a>
+    </li>
+</ul>

@@ -11,7 +11,7 @@ namespace foodfun.Models
         [Display(Name = "訂單編號")]
         public string order_no { get; set; }
 
-        [Display(Name = "訂單資訊")]
+        [Display(Name = "訂單日期")]
         public Nullable<System.DateTime> order_date { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C0}")]

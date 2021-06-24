@@ -291,7 +291,10 @@ public static class Cart
 
 
 
-
+    /// <summary>
+    /// 取得購物車金額
+    /// </summary>
+    /// <returns></returns>
     private static int GetCartTotals()
     {
         int? int_totals = 0;
@@ -299,11 +302,10 @@ public static class Cart
         {
             if (UserAccount.IsLogin)
             {
-
-                var data1 = db.Carts
-                    .Where(m => m.mno == UserAccount.UserNo)
-                    .ToList();
-                if (data1 != null) int_totals = data1.Sum(m => m.each_item_amount);
+                    var data1 = db.Carts
+                        .Where(m => m.mno == UserAccount.UserNo)
+                        .ToList();
+                    if (data1 != null) int_totals = data1.Sum(m => m.each_item_amount);
             }
             else
             {

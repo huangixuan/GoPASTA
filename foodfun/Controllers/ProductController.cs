@@ -20,7 +20,7 @@ namespace foodfun.Controllers
 
         //id是點入時傳進來的參數
         [AllowAnonymous]
-        public ActionResult CategoryList(string id)
+        public ActionResult CategoryList(string id = "HOT")
         {
             //找商品類別名稱
             string int_id = "";         //Category 的rowid

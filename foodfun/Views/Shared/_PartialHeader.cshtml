@@ -6,60 +6,81 @@
                 <div class="menu-wrapper">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href='@Url.Action("Index", "Home")'><img src="~/img/logo.png" alt=""></a>
+                        <a href='@Url.Action("Index", "Home",new { area = "" })'><img src="~/img/logo.png" alt=""></a>
                     </div>
                     <!-- Main-menu -->
                     <div class="main-menu d-none d-lg-block ">
                         <nav>
                             <ul id="navigation">
-                                <li><a href='@Url.Action("Index", "Home")'>Home</a></li>
-                                <li><a href='@Url.Action("CategoryList", "Product")'>shop</a>
-                                    <ul class="submenu">
-                                        <li><a href="#"> Product list</a></li>
-                                        <li><a href="#"> Product Details</a></li>
-                                    </ul>
-                                
-                                </li>
+                                @if (UserAccount.Role == EnumList.LoginRole.Guest || UserAccount.Role == EnumList.LoginRole.Member)
+                                {
+                                    <li><a href='@Url.Action("CategoryList", "Product")'>餐點訂購</a></li>
+                                    <li><a href="about.html">關於我們</a></li>
+                                    <li><a href="contact.html">聯絡我們</a></li>
+                                    @*<li>
+                                            <a href="shop.html">新訂單</a>
+                                            <ul class="submenu">
+                                                <li><a href="#"> Product list</a></li>
+                                                <li><a href="#"> Product Details</a></li>
+                                            </ul>
 
-                                <li>
-                                    <a href='@Url.Action("about", "Home")'>about</a>                                    
-                                </li>                            
-                              
-                                
-                                <li><a href='@Url.Action("Contact", "Home")'>Contact</a></li>
+                                        </li>*@
+
+                                }
+                                else
+                                {
+                                    <li><a href="#">內用</a></li>
+                                    <li><a href="#">外帶/外送</a></li>
+
+                                }
+
                             </ul>
                         </nav>
                     </div>
                     <!-- Header Right -->
                     <div class="header-right">
                         <ul id="navigation-2">
-                            <li>
-                                <div class="nav-search ">
-                                    <span class="flaticon-search"></span>
-                                </div>
-                            </li>
-                            <li><a href="@Url.Action("CartList","Product")"><span class="flaticon-shopping-cart"> @Cart.Count_Prop_Num</span></a> </li>
                             @if (UserAccount.Role == EnumList.LoginRole.Guest)
                             {
-                               <li>
-                                   <div class="nav-login">
-                                       <a href="@Url.Action("Login", "User")"> <span class="flaticon-user"></span>   </a>
-                                   </div>
-                               </li>
+                                <li> <div class="nav-search "> <span class="flaticon-search"></span> </div> </li>
+                                <li><a href="@Url.Action("CartList", "Product")"><span class="flaticon-shopping-cart"> @Cart.Count_Prop_Num</span></a> </li>
+                                <li>
+                                    <div class="nav-login">
+                                        <a href="@Url.Action("Login", "User")"> <span class="flaticon-user"></span>   </a>
+                                    </div>
+                                </li>
                             }
-                            @if (UserAccount.Role == EnumList.LoginRole.Member)
+                            else if (UserAccount.Role == EnumList.LoginRole.Member)
                             {
-                                 <li>
-                                     <a href="#"><span class="flaticon-user"> @UserAccount.UserName</span></a>
-                                     <ul class="submenu">
-                                         <li> @Html.ActionLink("會員中心", "UserInfo", "User", new { no = UserAccount.UserNo }, "")</li>
-                                         <li>@Html.ActionLink("修改密碼", "ResetPassword", "User", "", "")</li>
-                                         <li>@Html.ActionLink("訂單查詢", "Index", "MemberOrder", new { no = UserAccount.UserNo }, "")</li>
-                                         <li>@Html.ActionLink("登出", "Logout", "User", new { no = UserAccount.UserNo }, new { @class = "fas fa-sign-out-alt" })</li>
-                                     </ul>
-                              
-                                 </li>
-                             }
+                                <li> <div class="nav-search "> <span class="flaticon-search"></span> </div></li>
+                                <li><a href="@Url.Action("CartList", "Product")"><span class="flaticon-shopping-cart"> @Cart.Count_Prop_Num</span></a> </li>
+
+                                <li>
+                                    <a href="#"><span class="flaticon-user"> @UserAccount.UserName</span></a>
+                                    <ul class="submenu">
+                                        <li> @Html.ActionLink("會員中心", "UserInfo", "User", new { no = UserAccount.UserNo }, "")</li>
+                                        <li>@Html.ActionLink("修改密碼", "ResetPassword", "User", "", "")</li>
+                                        <li>@Html.ActionLink("訂單查詢", "Index", "MemberOrder", new { no = UserAccount.UserNo }, "")</li>
+                                        <li>@Html.ActionLink("登出", "Logout", "User", new { no = UserAccount.UserNo }, new { @class = "fas fa-sign-out-alt" })</li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li><a href="#"><span class="far fa-plus-square"></span></a> </li>
+                                <li><a href="#"><span class="far fa-folder"></span></a> </li>
+                                @*<li><a href="@Url.Action("Index", "Admin", new { area = "Admin" })"><span class="fas fa-cog"></span></a> </li>*@
+                                <li>
+                                    <a href="#"><span class="flaticon-user"> @UserAccount.UserName</span></a>
+                                    <ul class="submenu">
+                                        <li>
+                                            <a class="fas fa-sign-out-alt" href="/User/Login">系統登出</a>
+                                        </li>
+                                        <li>@Html.ActionLink("後台管理", "Index", "Admin", new { area = "Admin" }, new { @class = "fas fa-cog" })</li>
+                                    </ul>
+                                </li>
+
+                            }
 
                         </ul>
                     </div>

@@ -6,6 +6,7 @@ using System.Web;
 
 namespace foodfun.Models
 {
+    [Serializable] //可序列化
     [MetadataType(typeof(CartsMetaData))]
     public partial class Carts
     {

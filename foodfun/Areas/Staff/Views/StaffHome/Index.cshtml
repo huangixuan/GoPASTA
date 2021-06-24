@@ -1,0 +1,151 @@
+﻿@model foodfun.Models.MemberOrderViewModel
+@using foodfun.Models;
+
+@{
+    ViewBag.Title = "產品列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<Categorys> categorys = new List<Categorys>();
+
+    categorys = Shop.GetCategarysIsSale();
+
+}
+
+
+<style>
+    .popular-items .order_box .order-list label {
+        width: 100px;
+    }
+</style>
+
+<section class="popular-items latest-padding">
+    <div class="container-fluid">
+        <div class="row">
+
+            @*=========分類列表=========*@
+            <div class="col-md-8 ">
+                <div class="row product-btn justify-content-between mb-40">
+                    <div class="properties__button">
+                        <!--Nav Button  -->
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link btn-danger mx-2" id="nav-home-tab" href="/Staff/StaffHome/Index/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
+                                @foreach (var item in categorys)
+                                {
+                                    <a class="nav-item nav-link bg-danger mx-2" href="/Staff/StaffHome/Index/@item.category_no">@item.category_name</a>
+                                }
+                            </div>
+
+                        </nav>
+
+                        <!--End Nav Button  -->
+                    </div>
+                </div>
+
+
+                @*=========商品==========*@
+                <div class="row" id="">
+
+
+                    @foreach (var item in Model.products)
+                    {
+
+                        <!-- card one -->
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-6">
+                            <div class="item-box border mb-3 text-center " id=@item.product_no>
+                                <h3 class="h5">
+                                    @Html.DisplayFor(modelItem => item.product_name)
+                                </h3>
+                                <span>@Html.DisplayFor(modelItem => item.price_sale)</span>
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+                @*=========商品 end==========*@
+
+            </div>
+
+            @*=========訂單==========*@
+            <div class="col-md-4">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="order_box">
+                        <div class="row">
+                            <div class=" btn-group-toggle mx-auto order-list" data-toggle="buttons">
+                                @foreach (var item in Model.mealServiceList)
+                                {
+                                    <label class="btn btn-warning mx-1">
+                                        <input type="radio" name="mealService" id=@item.mealservice_no>
+                                        @item.mealservice_name
+                                    </label>
+                                }
+                            </div>
+                        </div>
+                        <div id="orderDetail">
+                            @Html.Partial("_PartialOrderBox")
+                        </div>
+
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option4" name="selector" />
+                            <label for="f-option4">I’ve read and accept the </label>
+                            <a href="#">terms & conditions*</a>
+                        </div>
+                        <a class="btn_3" href="#">Proceed to Paypal</a>
+                    </div>
+                }
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        $('.item-box').css("cursor", "pointer");
+        $('.item-box').on('click', function () {
+            var id = $(this).attr('id');
+            AddToCart(id);
+        });
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("OrderBox","StaffHome")',
+                data: { id: productId },
+                success: function (data) {
+                    alert('成功')
+                    $("#orderDetail").html(data);
+                },
+                error: function () {
+                    alert('失敗')
+                }
+            })
+
+
+
+
+        }
+
+
+
+
+
+    })
+
+
+</script>
