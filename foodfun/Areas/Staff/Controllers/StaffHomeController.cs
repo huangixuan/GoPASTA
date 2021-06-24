@@ -29,9 +29,8 @@ namespace foodfun.Areas.Staff.Controllers
             {
                 Order = new Orders(),
                 mealServiceList = db.MealService.OrderBy(m => m.mealservice_no).ToList(),
-                PaymentsList = db.Payments.OrderBy(m => m.paid_no).ToList()
-
-
+                PaymentsList = db.Payments.OrderBy(m => m.paid_no).ToList(),
+                
             };
             if (id == "HOT")
             {
@@ -47,5 +46,26 @@ namespace foodfun.Areas.Staff.Controllers
 
             return View(model);
         }
+
+       
+
+
+        public JsonResult AddToCart(string id)
+        {
+            var currentCart = CartTemp.GetCurrentCart();
+            currentCart.AddCart(id);
+            return Json(currentCart, JsonRequestBehavior.AllowGet);
+        }
+
+ 
+        public ActionResult OrderBox(string id) 
+        {
+            var currentCart = CartTemp.GetCurrentCart();
+            currentCart.AddCart(id);
+
+            return PartialView("_PartialOrderBox");
+
+        }
+
     }
 }

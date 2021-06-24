@@ -6,7 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     List<Categorys> categorys = new List<Categorys>();
+
     categorys = Shop.GetCategarysIsSale();
+
 }
 
 
@@ -68,6 +70,7 @@
 
             @*=========訂單==========*@
             <div class="col-md-4">
+
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
@@ -83,28 +86,9 @@
                                 }
                             </div>
                         </div>
-                        <div class="border-bottom border-secondary  my-3">
-                            <ul class="list">
-                                <li>商品<span>小計</span></li>
-                                <li>
-                                    Fresh Blackberry
-                                    <span class="middle">x 02</span>
-                                    <span class="last">$720.00</span>
-
-                                </li>
-
-                            </ul>
+                        <div id="orderDetail">
+                            @Html.Partial("_PartialOrderBox")
                         </div>
-                        <ul class="list list_2">
-
-                            <li>
-                                <a href="#">
-                                    總計
-                                    <span>$2210.00</span>
-                                </a>
-                            </li>
-                        </ul>
-
 
                         <div class="creat_account">
                             <input type="checkbox" id="f-option4" name="selector" />
@@ -114,6 +98,14 @@
                         <a class="btn_3" href="#">Proceed to Paypal</a>
                     </div>
                 }
+
+
+
+
+
+
+
+
 
             </div>
         </div>
@@ -125,24 +117,30 @@
 
 <script>
     $(document).ready(function () {
+        $('.item-box').css("cursor", "pointer");
         $('.item-box').on('click', function () {
             var id = $(this).attr('id');
             AddToCart(id);
         });
-
-
-        function AddToCart(prrductId) {
+        function AddToCart(productId) {
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("AddToCat","StaffHome",new { area = "Staff" })',
-                data: { id: prrductId }
-
+                url: '@Url.Action("OrderBox","StaffHome")',
+                data: { id: productId },
+                success: function (data) {
+                    alert('成功')
+                    $("#orderDetail").html(data);
+                },
+                error: function () {
+                    alert('失敗')
+                }
             })
-                .done(function (data) {
 
-                });
+
+
 
         }
+
 
 
 

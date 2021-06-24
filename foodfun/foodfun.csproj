@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Class\AdminCart.cs" />
     <Compile Include="App_Class\AppMail.cs" />
     <Compile Include="App_Class\AppService.cs" />
     <Compile Include="App_Class\BaseClass.cs" />
@@ -421,6 +422,7 @@
     </Content>
     <Content Include="Areas\Staff\Views\web.config" />
     <Content Include="Areas\Staff\Views\StaffHome\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\StaffHome\_PartialOrderBox.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\datepicker-zh-TW.js" />
     <Content Include="Scripts\datepicker.js" />
@@ -835,7 +837,7 @@
     <Folder Include="Areas\Admin\Views\AdminHome\" />
     <Folder Include="Areas\Staff\Data\" />
     <Folder Include="Areas\Staff\Views\Shared\" />
-    <Folder Include="Views\Default\" />
+    <Folder Include="Views\AdminCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
