@@ -71,8 +71,9 @@ namespace foodfun.Areas.Admin.Controllers
             if (!ModelState.IsValid) return View(model);
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                var data = db.Propertys.Where(m => m.property_no == model.property_no).FirstOrDefault();
-               // data.rowid = model.rowid;
+                // var data = db.Propertys.Where(m => m.property_no == model.property_no).FirstOrDefault();
+                var data = db.Propertys.Where(m => m.rowid == model.rowid).FirstOrDefault();
+                // data.rowid = model.rowid;
                 data.property_no = model.property_no;
                 data.property_name = model.property_name;
                 data.add_price = model.add_price;

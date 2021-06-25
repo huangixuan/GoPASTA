@@ -49,7 +49,7 @@ namespace foodfun.Areas.Admin.Controllers
      
         [HttpGet]
         [LoginAuthorize(RoleList = "Admin")]
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
@@ -58,7 +58,7 @@ namespace foodfun.Areas.Admin.Controllers
                 //    Categorys new_model = new Categorys();
                 //    return View(new_model);
                 //}
-                var models = db.Categorys.Where(m => m.category_no == id).FirstOrDefault();
+                var models = db.Categorys.Where(m => m.rowid == id).FirstOrDefault();
                 return View(models);
             }
         }
@@ -71,7 +71,7 @@ namespace foodfun.Areas.Admin.Controllers
             if (!ModelState.IsValid) return View(model);
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
-                var data = db.Categorys.Where(m => m.category_no == model.category_no).FirstOrDefault();
+                var data = db.Categorys.Where(m => m.rowid == model.rowid).FirstOrDefault();
                 data.rowid = model.rowid;
                 data.parentid = model.parentid;
                 data.category_no = model.category_no;
