@@ -11,7 +11,7 @@
 <html class="no-js" lang="">
 
 
-<head>
+<!--<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ela Admin - HTML5 Admin Template</title>
@@ -31,11 +31,11 @@
     <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>-->
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
-</head>
+<!--</head>-->
 
 
 
@@ -84,7 +84,7 @@
                                             </td>
                                             <td>
 
-                                                @Html.ActionLink("修改", "Edit", "Categorys", new { id = item.category_no }, new { @class = "btn btn-info" })
+                                                @Html.ActionLink("修改", "Edit", "Categorys", new { id = item.rowid }, new { @class = "btn btn-info" })
 
                                                 @Html.ActionLink("刪除", "Delete", "Categorys", new { id = item.category_no }, new { @class = "btn btn-success", onclick = "return confirm('是否確定要刪除?')" })
                                             </td>

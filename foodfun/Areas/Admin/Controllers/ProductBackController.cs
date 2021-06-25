@@ -39,12 +39,11 @@ namespace foodfun.Areas.Admin.Controllers
         public ActionResult Create(Products model)
         {
             if (!ModelState.IsValid) return View(model);
-            //repo_product.Create(model);
-            //repo_product.SaveChanges();
-
+           
 
             using (GoPASTAEntities db = new GoPASTAEntities())
             {
+                model.product_no = Backend.CreateProductNo(model.category_no);
                 db.Products.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,6 +61,8 @@ namespace foodfun.Areas.Admin.Controllers
                 return View(model);
             }
         }
+
+
 
         [HttpPost]
         
