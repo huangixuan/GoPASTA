@@ -31,7 +31,6 @@ namespace foodfun.Models
         public virtual DbSet<OrdersDetails> OrdersDetails { get; set; }
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductsProperty> ProductsProperty { get; set; }
         public virtual DbSet<Propertys> Propertys { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
@@ -39,5 +38,6 @@ namespace foodfun.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<ProgramList> ProgramList { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
     }
 }

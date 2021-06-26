@@ -21,7 +21,7 @@ namespace foodfun.Models
         public Nullable<int> price_avgcost { get; set; }
         public Nullable<int> price_sale { get; set; }
         public Nullable<int> discount_price { get; set; }
-        public string stock_qty { get; set; }
+        public Nullable<int> stock_qty { get; set; }
         public string image_path { get; set; }
         public string description { get; set; }
         public Nullable<int> browse_count { get; set; }

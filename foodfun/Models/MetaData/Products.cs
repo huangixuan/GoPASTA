@@ -48,7 +48,7 @@ namespace foodfun.Models
             public Nullable<int> discount_price { get; set; }
 
             [Display(Name ="庫存數量")]
-            public string stock_qty { get; set; }
+            public int stock_qty { get; set; }
            
             [Display(Name ="產品圖片")]
             public string image_path { get; set; }
