@@ -13,7 +13,7 @@
 }
 
 
-<section class="popular-items latest-padding">
+<section class="popular-items section-padding">
     <div class="container">
 
 
@@ -22,15 +22,15 @@
         <div class="row product-btn justify-content-between mb-40">
             <div class="properties__button col-12">
                 <!--Nav Button  -->
-                    <div class="scrollmenu ">
-                        <div class="itemwidth ">
-                            <a class="nav-item nav-link bg-danger mx-2 px-4 py-3" id="nav-home-tab" data-toggle="" href="/Product/CategoryList/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
-                            @foreach (var item in categorys)
-                            {
-                                <a class="nav-item nav-link bg-danger mx-2 px-4 py-3" href="/Product/CategoryList/@item.category_no">@item.category_name</a>
-                            }
-                        </div>
+                <div class="scrollmenu ">
+                    <div class="itemwidth ">
+                        <a class="nav-item nav-link bg-warning  px-4 py-3" id="nav-home-tab" data-toggle="" href="/Product/CategoryList/HOT" role="tab" aria-controls="nav-home" aria-selected="true">熱門商品</a>
+                        @foreach (var item in categorys)
+                        {
+                            <a class="nav-item nav-link bg-warning  px-4 py-3" href="/Product/CategoryList/@item.category_no">@item.category_name</a>
+                        }
                     </div>
+                </div>
 
                 <!--End Nav Button  -->
             </div>
@@ -168,6 +168,11 @@
         </div>
     </div>
 </section>
+
+
+
+             
+
 <script>
     $(".number-decrement").click(function () {
         var qty = $(this).parent().find("input");
