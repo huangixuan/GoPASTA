@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GoPASTAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cart_lotno" Type="nvarchar" MaxLength="50" />
+          <Property Name="mno" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="Property_select" Type="nvarchar" MaxLength="50" />
+          <Property Name="qty" Type="int" />
+          <Property Name="create_time" Type="datetime" />
+          <Property Name="each_item_amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Categorys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentid" Type="int" />
+          <Property Name="category_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_id" Type="int" Nullable="false" />
+          <Property Name="brandname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tel" Type="int" />
+          <Property Name="fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="opentime" Type="time" Precision="0" />
+          <Property Name="closetime" Type="time" Precision="0" />
+          <Property Name="public_holiday" Type="date" />
+          <Property Name="logoimage_path" Type="nvarchar" MaxLength="50" />
+          <Property Name="indeximage_path" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Concepts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" Nullable="false" />
+          <Property Name="corevalue_title" Type="nvarchar" MaxLength="50" />
+          <Property Name="corevalue_descpt" Type="nvarchar" MaxLength="250" />
+          <Property Name="corevalue_path" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MealService">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mealservice_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="mealservice_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_date" Type="datetime" />
+          <Property Name="mno" Type="nvarchar" MaxLength="50" />
+          <Property Name="discount_rate" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="taxs" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="orderstatus_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="mealservice_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="SchedulOrderTime" Type="datetime" />
+          <Property Name="table_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="paid_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="receive_address" Type="nvarchar" MaxLength="250" />
+          <Property Name="isclosed" Type="bit" />
+          <Property Name="ispaided" Type="bit" />
+          <Property Name="order_guid" Type="nvarchar" MaxLength="50" />
+          <Property Name="cancelorder" Type="bit" />
+          <Property Name="cancelreason" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="OrdersDetails">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="Property_select" Type="nvarchar" MaxLength="50" />
+          <Property Name="each_item_amount" Type="int" />
+          <Property Name="qty" Type="int" />
+          <Property Name="discount_rate" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="orderstatus_no" />
+          </Key>
+          <Property Name="orderstatus_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="orderstatus_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paid_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="paid_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="product_no" />
+          </Key>
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_spec" Type="nvarchar" MaxLength="250" />
+          <Property Name="category_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="price_avgcost" Type="int" />
+          <Property Name="price_sale" Type="int" />
+          <Property Name="discount_price" Type="int" />
+          <Property Name="stock_qty" Type="int" />
+          <Property Name="image_path" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar" MaxLength="250" />
+          <Property Name="browse_count" Type="int" />
+          <Property Name="istop" Type="bit" />
+          <Property Name="issale" Type="bit" />
+          <Property Name="ishot" Type="bit" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProductsProperty">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="Property_no" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_profile" Type="nvarchar" MaxLength="250" />
+          <Property Name="profileimage_path" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProgramList">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentid" Type="int" />
+          <Property Name="filter_role" Type="nvarchar" MaxLength="50" />
+          <Property Name="pro_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="pro_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="controller_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="action_name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Propertys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="property_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="property_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="add_price" Type="int" />
+          <Property Name="property_value" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="role_no" />
+          </Key>
+          <Property Name="role_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="remark" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="account_name" />
+          </Key>
+          <Property Name="mno" Type="nvarchar" MaxLength="50" />
+          <Property Name="mname" Type="nvarchar" MaxLength="50" />
+          <Property Name="account_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="nvarchar" MaxLength="50" />
+          <Property Name="birthday" Type="datetime" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="role_no" Type="nvarchar" MaxLength="50" />
+          <Property Name="varify_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="isvarify" Type="bit" />
+          <Property Name="isvalidate" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="GoPASTAModelStoreContainer">
+          <EntitySet Name="Carts" EntityType="Self.Carts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorys" EntityType="Self.Categorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Concepts" EntityType="Self.Concepts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MealService" EntityType="Self.MealService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsProperty" EntityType="Self.ProductsProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProgramList" EntityType="Self.ProgramList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Propertys" EntityType="Self.Propertys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GoPASTAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cart_lotno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property_select" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="create_time" Type="DateTime" Precision="3" />
+          <Property Name="each_item_amount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Categorys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_id" Type="Int32" Nullable="false" />
+          <Property Name="brandname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tel" Type="Int32" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="opentime" Type="Time" Precision="0" />
+          <Property Name="closetime" Type="Time" Precision="0" />
+          <Property Name="public_holiday" Type="DateTime" Precision="0" />
+          <Property Name="logoimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="indeximage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Concepts">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" />
+          <Property Name="corevalue_title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="corevalue_descpt" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="corevalue_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MealService">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mealservice_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_date" Type="DateTime" Precision="3" />
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="discount_rate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="taxs" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mealservice_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SchedulOrderTime" Type="DateTime" Precision="3" />
+          <Property Name="table_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="receive_address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="isclosed" Type="Boolean" />
+          <Property Name="ispaided" Type="Boolean" />
+          <Property Name="order_guid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cancelorder" Type="Boolean" />
+          <Property Name="cancelreason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrdersDetails">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property_select" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="each_item_amount" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="discount_rate" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderStatus">
+          <Key>
+            <PropertyRef Name="orderstatus_no" />
+          </Key>
+          <Property Name="orderstatus_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="orderstatus_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paid_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="paid_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="product_no" />
+          </Key>
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="product_spec" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="category_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price_avgcost" Type="Int32" />
+          <Property Name="price_sale" Type="Int32" />
+          <Property Name="discount_price" Type="Int32" />
+          <Property Name="stock_qty" Type="Int32" />
+          <Property Name="image_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="browse_count" Type="Int32" />
+          <Property Name="istop" Type="Boolean" />
+          <Property Name="issale" Type="Boolean" />
+          <Property Name="ishot" Type="Boolean" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductsProperty">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Property_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_profile" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="profileimage_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProgramList">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="filter_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pro_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pro_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="controller_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="action_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Propertys">
+          <Key>
+            <PropertyRef Name="rowid" />
+          </Key>
+          <Property Name="rowid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="property_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="property_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="add_price" Type="Int32" />
+          <Property Name="property_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="role_no" />
+          </Key>
+          <Property Name="role_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="remark" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="account_name" />
+          </Key>
+          <Property Name="mno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="account_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="DateTime" Precision="3" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="varify_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isvarify" Type="Boolean" />
+          <Property Name="isvalidate" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="GoPASTAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carts" EntityType="Self.Carts" />
+          <EntitySet Name="Categorys" EntityType="Self.Categorys" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="Concepts" EntityType="Self.Concepts" />
+          <EntitySet Name="MealService" EntityType="Self.MealService" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetails" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductsProperty" EntityType="Self.ProductsProperty" />
+          <EntitySet Name="Profiles" EntityType="Self.Profiles" />
+          <EntitySet Name="ProgramList" EntityType="Self.ProgramList" />
+          <EntitySet Name="Propertys" EntityType="Self.Propertys" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GoPASTAModelStoreContainer" CdmEntityContainer="GoPASTAEntities">
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="GoPASTAModel.Carts">
+              <MappingFragment StoreEntitySet="Carts">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="cart_lotno" ColumnName="cart_lotno" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="Property_select" ColumnName="Property_select" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="each_item_amount" ColumnName="each_item_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorys">
+            <EntityTypeMapping TypeName="GoPASTAModel.Categorys">
+              <MappingFragment StoreEntitySet="Categorys">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="category_no" ColumnName="category_no" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="GoPASTAModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="brandname" ColumnName="brandname" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="opentime" ColumnName="opentime" />
+                <ScalarProperty Name="closetime" ColumnName="closetime" />
+                <ScalarProperty Name="public_holiday" ColumnName="public_holiday" />
+                <ScalarProperty Name="logoimage_path" ColumnName="logoimage_path" />
+                <ScalarProperty Name="indeximage_path" ColumnName="indeximage_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Concepts">
+            <EntityTypeMapping TypeName="GoPASTAModel.Concepts">
+              <MappingFragment StoreEntitySet="Concepts">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="corevalue_title" ColumnName="corevalue_title" />
+                <ScalarProperty Name="corevalue_descpt" ColumnName="corevalue_descpt" />
+                <ScalarProperty Name="corevalue_path" ColumnName="corevalue_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MealService">
+            <EntityTypeMapping TypeName="GoPASTAModel.MealService">
+              <MappingFragment StoreEntitySet="MealService">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="mealservice_no" ColumnName="mealservice_no" />
+                <ScalarProperty Name="mealservice_name" ColumnName="mealservice_name" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="GoPASTAModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="discount_rate" ColumnName="discount_rate" />
+                <ScalarProperty Name="taxs" ColumnName="taxs" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="orderstatus_no" ColumnName="orderstatus_no" />
+                <ScalarProperty Name="mealservice_no" ColumnName="mealservice_no" />
+                <ScalarProperty Name="SchedulOrderTime" ColumnName="SchedulOrderTime" />
+                <ScalarProperty Name="table_no" ColumnName="table_no" />
+                <ScalarProperty Name="paid_no" ColumnName="paid_no" />
+                <ScalarProperty Name="receive_name" ColumnName="receive_name" />
+                <ScalarProperty Name="receive_phone" ColumnName="receive_phone" />
+                <ScalarProperty Name="receive_address" ColumnName="receive_address" />
+                <ScalarProperty Name="isclosed" ColumnName="isclosed" />
+                <ScalarProperty Name="ispaided" ColumnName="ispaided" />
+                <ScalarProperty Name="order_guid" ColumnName="order_guid" />
+                <ScalarProperty Name="cancelorder" ColumnName="cancelorder" />
+                <ScalarProperty Name="cancelreason" ColumnName="cancelreason" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersDetails">
+            <EntityTypeMapping TypeName="GoPASTAModel.OrdersDetails">
+              <MappingFragment StoreEntitySet="OrdersDetails">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="order_no" ColumnName="order_no" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="Property_select" ColumnName="Property_select" />
+                <ScalarProperty Name="each_item_amount" ColumnName="each_item_amount" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="discount_rate" ColumnName="discount_rate" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatus">
+            <EntityTypeMapping TypeName="GoPASTAModel.OrderStatus">
+              <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="orderstatus_no" ColumnName="orderstatus_no" />
+                <ScalarProperty Name="orderstatus_name" ColumnName="orderstatus_name" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="GoPASTAModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="paid_no" ColumnName="paid_no" />
+                <ScalarProperty Name="paid_name" ColumnName="paid_name" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="GoPASTAModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_spec" ColumnName="product_spec" />
+                <ScalarProperty Name="category_no" ColumnName="category_no" />
+                <ScalarProperty Name="price_avgcost" ColumnName="price_avgcost" />
+                <ScalarProperty Name="price_sale" ColumnName="price_sale" />
+                <ScalarProperty Name="discount_price" ColumnName="discount_price" />
+                <ScalarProperty Name="stock_qty" ColumnName="stock_qty" />
+                <ScalarProperty Name="image_path" ColumnName="image_path" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="browse_count" ColumnName="browse_count" />
+                <ScalarProperty Name="istop" ColumnName="istop" />
+                <ScalarProperty Name="issale" ColumnName="issale" />
+                <ScalarProperty Name="ishot" ColumnName="ishot" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsProperty">
+            <EntityTypeMapping TypeName="GoPASTAModel.ProductsProperty">
+              <MappingFragment StoreEntitySet="ProductsProperty">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="product_no" ColumnName="product_no" />
+                <ScalarProperty Name="Property_no" ColumnName="Property_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="GoPASTAModel.Profiles">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="company_profile" ColumnName="company_profile" />
+                <ScalarProperty Name="profileimage_path" ColumnName="profileimage_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProgramList">
+            <EntityTypeMapping TypeName="GoPASTAModel.ProgramList">
+              <MappingFragment StoreEntitySet="ProgramList">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="filter_role" ColumnName="filter_role" />
+                <ScalarProperty Name="pro_no" ColumnName="pro_no" />
+                <ScalarProperty Name="pro_name" ColumnName="pro_name" />
+                <ScalarProperty Name="controller_name" ColumnName="controller_name" />
+                <ScalarProperty Name="action_name" ColumnName="action_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Propertys">
+            <EntityTypeMapping TypeName="GoPASTAModel.Propertys">
+              <MappingFragment StoreEntitySet="Propertys">
+                <ScalarProperty Name="rowid" ColumnName="rowid" />
+                <ScalarProperty Name="property_no" ColumnName="property_no" />
+                <ScalarProperty Name="property_name" ColumnName="property_name" />
+                <ScalarProperty Name="add_price" ColumnName="add_price" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="GoPASTAModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="role_no" ColumnName="role_no" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GoPASTAModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="mname" ColumnName="mname" />
+                <ScalarProperty Name="account_name" ColumnName="account_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="role_no" ColumnName="role_no" />
+                <ScalarProperty Name="varify_code" ColumnName="varify_code" />
+                <ScalarProperty Name="isvarify" ColumnName="isvarify" />
+                <ScalarProperty Name="isvalidate" ColumnName="isvalidate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
