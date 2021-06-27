@@ -234,7 +234,7 @@
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\MealServiceViewModel.cs" />
     <Compile Include="Models\ViewModel\ConfirmationViewModel.cs" />
-    <Compile Include="Models\ViewModel\MemberOrderViewModel.cs" />
+    <Compile Include="Models\ViewModel\AdminOrderViewModel.cs" />
     <Compile Include="Models\ViewModel\OrdersViewModel.cs" />
     <Compile Include="Models\ViewModel\ResetPasswordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -864,7 +864,6 @@
     <Folder Include="Areas\Admin\Views\AdminHome\" />
     <Folder Include="Areas\Staff\Data\" />
     <Folder Include="Areas\Staff\Views\Shared\" />
-    <Folder Include="Views\AdminCart\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
