@@ -1,4 +1,4 @@
-﻿@model foodfun.Models.MemberOrderViewModel
+﻿@model foodfun.Models.AdminOrderViewModel
 @using foodfun.Models;
 
 @{
@@ -50,82 +50,104 @@
                     @foreach (var item in Model.products)
                     {
                         <!-- card one -->
-                    <div class="col-xl-2 col-lg-2 col-md-4 col-6 ">
-                        <div class="item-box border mb-3 text-center " data-toggle="modal" data-target="#@item.product_no">
-                            <h3 class="h5">
-                                @Html.DisplayFor(modelItem => item.product_name)
-                            </h3>
-                            <span>@Html.DisplayFor(modelItem => item.price_sale)</span>
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-6 ">
+                            <div class="item-box border mb-3 text-center " data-toggle="modal" data-target="#@item.product_no">
+                                <h3 class="h5">
+                                    @Html.DisplayFor(modelItem => item.product_name)
+                                </h3>
+                                <span>@Html.DisplayFor(modelItem => item.price_sale)</span>
 
-                        </div>
-
-
-
-                        @*=========================*@
-
-                        <div class="modal " id="@item.product_no" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel"> @item.product_name</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                        <div class="pruduct_property">
+                            </div>
 
 
-                                            @{List<SelectListItem> lists = Shop.GetPropertyList(item.product_no);}
 
-                                            @if (lists != null)
-                                            {
+                            @*=========================*@
 
-                                                foreach (var item1 in lists)
+                            <div class="modal item_prod_no" id="@item.product_no" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"> @item.product_name</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="pruduct_property mb-3">
+
+
+                                                @{List<SelectListItem> lists = Shop.GetPropertyList(item.product_no);}
+
+                                                @if (lists != null)
                                                 {
 
-                                                    <div class="section">
-                                                        <span class="col-form-label">@item1.Text   </span>
-
-                                                        <div class="form-check form-check-inline">
-                                                            @{
-                                                                List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split('/').ToList();
-                                                                foreach (var value in prop_values)
-                                                                {
-                                                                    @Html.RadioButton(@item1.Value, @value, new { @class = "form-check-input" })
-                                                                    @Html.Label(item1.Value, @value, new { @class = "form-check-label" })
-
+                                                    foreach (var item1 in lists)
+                                                    {
+                                                        <div class="section">
+                                                            <div class="form-check form-check-inline">
+                                                                @{
+                                                                    List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split('/').ToList();
+                                                                    foreach (var value in prop_values)
+                                                                    {
+                                                                        @Html.RadioButton(@item1.Value, @value, new { @class = "form-check-input" })
+                                                                        @Html.Label(item1.Value, @value, new { @class = "form-check-label" })
+                                                                    }
                                                                 }
-                                                            }
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    }
                                                 }
-                                            }
+                                            </div>
+
+                                            <select class="custom-select">
+                                                @for (int i = 0; i <= item.stock_qty; i++)
+                                                {
+                                                    if (item.stock_qty == 0)
+                                                    {
+                                                        <option>售完</option>
+                                                    }
+                                                    else if (i > 0)
+                                                    {
+
+                                                        <option value=@i>@i</option>
+                                                    }
+
+                                                }
+                                            </select>
+
+                                            <select class="custom-select-demo">
+
+                                                <option>售完</option>
+
+
+                                                <option value=1>1</option>
+                                                <option value=2>2</option>
+                                                <option value=3>3</option>
+                                            </select>
+
+
+
                                         </div>
-
-                                        <select class="qty-select">
-                                            @for (int i = 1; i <= item.stock_qty; i++)
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                            @if (item.stock_qty > 0)
                                             {
-
+                                                <button type="button" class="btn btn-primary item_confirm" id="item_confirm">確定</button>
                                             }
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-primary" disabled>確定</button>
+                                            }
 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary">確定</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @*======================*@
+
+
                         </div>
-                        @*======================*@
-
-
-                    </div>
                     }
 
                 </div>
@@ -142,29 +164,59 @@
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-                    <div class="order_box">
-                        <div class="row">
-                            <div class=" btn-group-toggle mx-auto order-list" data-toggle="buttons">
-                                @foreach (var item in Model.mealServiceList)
-                                {
-                                    <label class="btn btn-warning mx-1">
-                                        <input type="radio" name="mealService" id=@item.mealservice_no>
-                                        @item.mealservice_name
-                                    </label>
-                                }
-                            </div>
+                <div class="order_box">
+                    <div class="row">
+                        <div class=" btn-group-toggle mx-auto order-list" >
+                            @foreach (var item in Model.mealServiceList)
+                            {
+                                <label class="btn btn-warning mx-1">
+                                    <input type="radio" name="mealService" id=@item.mealservice_no value="@item.mealservice_no">
+                                    @item.mealservice_name
+                                </label>
+                            }
                         </div>
-                        <div id="orderDetail">
-                            @Html.Partial("_PartialOrderBox")
-                        </div>
-
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option4" name="selector" />
-                            <label for="f-option4">I’ve read and accept the </label>
-                            <a href="#">terms & conditions*</a>
-                        </div>
-                        <a class="btn_3" href="#">Proceed to Paypal</a>
                     </div>
+                     
+                    @*==========================================*@
+                    <div class="form-group row" id="table" @*style="display:none"*@>
+                      
+                            @Html.EditorFor(model => model.Order.table_no, new { htmlAttributes = new { @class = "form-control" , placeholder="桌號"} })
+                            @Html.ValidationMessageFor(model => model.Order.table_no, "", new { @class = "text-danger" })
+                      
+                    </div>
+
+                    <div class="form-group row" id="ordertime" @*style="display:none"*@>
+                       
+                            @Html.EditorFor(model => model.Order.SchedulOrderTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" ,placeholder= "預約取餐時間" } })
+                            @Html.ValidationMessageFor(model => model.Order.SchedulOrderTime, "", new { @class = "text-danger" })
+
+                          
+                       
+                    </div>
+
+                    <div class="form-group row" id="addr" @*style="display:none"*@>
+                       
+     
+                            @Html.EditorFor(model => model.Order.receive_address, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入地址" } })
+                            @Html.ValidationMessageFor(model => model.Order.receive_address, "", new { @class = "text-danger" })
+                        
+                    </div>
+
+
+
+                    @*========================================*@
+
+                    <div id="orderDetail">
+                        @Html.Partial("_PartialOrderBox")
+                    </div>
+
+                    <div class="creat_account">
+                        <input type="checkbox" id="f-option4" name="selector" />
+                        <label for="f-option4">I’ve read and accept the </label>
+                        <a href="#">terms & conditions*</a>
+                    </div>
+                    <a class="btn_3" href="#">Proceed to Paypal</a>
+                </div>
                 }
 
 
@@ -185,13 +237,18 @@
 
 
 
-@*<script>
+<script>
         $(document).ready(function () {
             $('.item-box').css("cursor", "pointer");
-            $('.item-box').on('click', function () {
-                var id = $(this).attr('id');
+            $('.item_confirm').on('click', function () {
+                var id = $(this).closest(".item_prod_no").attr("id");
+           
+
+                var qty = $(this).closest(".custom-select-demo").val();
+                alert(qty);
                 AddToCart(id);
-                SelsctQty();
+                $(".modal").modal('hide');
+               
             });
             function AddToCart(productId) {
                 $.ajax({
@@ -208,21 +265,33 @@
                 })
             }
 
-            function SelsctQty()
-            {
-                console.log("ss")
-                for (var i = 1; i <= 5; i++) {
-                    $('#schoolSelect').append('<option value="' + i + '" >' + i + '</option>');
-                }
-
-            }
-
-
-
-
-
-
         })
+      
+
+    $("input[type=radio][name = mealService]").change(function () {
+        console.log('aa')
+        var mealno = $(this).val();
+        console.log(mealno)
+        if (mealno == "A") {
+            $('#table').show()
+            $('#ordertime').hide()
+            $('#addr').hide()
+        }
+        if (mealno == "B") {
+            $('#table').hide();
+            $('#ordertime').show()
+            $('#ordertime label').text("取餐時間")
+            $('#addr').hide()
+        }
+        if (mealno == "C") {
+            $('#table').hide();
+            $('#ordertime').show()
+            $('#ordertime label').text("送達時間")
+            $('#addr').show()
+
+        }
+
+    })
 
 
-    </script>*@
+    </script>

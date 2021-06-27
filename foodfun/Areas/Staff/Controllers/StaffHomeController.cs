@@ -25,7 +25,7 @@ namespace foodfun.Areas.Staff.Controllers
             ViewBag.CategoryName = Shop.GetCategoryName(id, ref int_id);    //int_id 用ref 傳入改寫原值，把商品分類子類名稱給VB.CategoryName
 
             //商品list
-            MemberOrderViewModel model = new MemberOrderViewModel()
+            AdminOrderViewModel model = new AdminOrderViewModel()
             {
                 Order = new Orders(),
                 mealServiceList = db.MealService.OrderBy(m => m.mealservice_no).ToList(),

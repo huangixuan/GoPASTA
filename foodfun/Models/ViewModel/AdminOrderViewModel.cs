@@ -5,7 +5,7 @@ using System.Web;
 
 namespace foodfun.Models
 {
-    public class MemberOrderViewModel
+    public class AdminOrderViewModel
     {
         public List<Products> products { get; set; }
         public Orders Order { get; set; }
