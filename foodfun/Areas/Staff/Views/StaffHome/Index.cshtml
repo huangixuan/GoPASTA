@@ -116,17 +116,7 @@
                                                 }
                                             </select>
 
-                                            <select class="custom-select-demo">
-
-                                                <option>售完</option>
-
-
-                                                <option value=1>1</option>
-                                                <option value=2>2</option>
-                                                <option value=3>3</option>
-                                            </select>
-
-
+                                           
 
                                         </div>
                                         <div class="modal-footer">
@@ -166,65 +156,50 @@
                     @Html.AntiForgeryToken()
                 <div class="order_box">
                     <div class="row">
-                        <div class=" btn-group-toggle mx-auto order-list" >
+                        <div class=" btn-group btn-group-toggle mx-auto order-list">
                             @foreach (var item in Model.mealServiceList)
                             {
-                                <label class="btn btn-warning mx-1">
+                                <label class="btn btn-warning mx-1 ">
                                     <input type="radio" name="mealService" id=@item.mealservice_no value="@item.mealservice_no">
                                     @item.mealservice_name
                                 </label>
                             }
                         </div>
                     </div>
-                     
-                    @*==========================================*@
-                    <div class="form-group row" id="table" @*style="display:none"*@>
-                      
-                            @Html.EditorFor(model => model.Order.table_no, new { htmlAttributes = new { @class = "form-control" , placeholder="桌號"} })
-                            @Html.ValidationMessageFor(model => model.Order.table_no, "", new { @class = "text-danger" })
-                      
-                    </div>
 
-                    <div class="form-group row" id="ordertime" @*style="display:none"*@>
-                       
-                            @Html.EditorFor(model => model.Order.SchedulOrderTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" ,placeholder= "預約取餐時間" } })
-                            @Html.ValidationMessageFor(model => model.Order.SchedulOrderTime, "", new { @class = "text-danger" })
+                    
 
-                          
-                       
-                    </div>
-
-                    <div class="form-group row" id="addr" @*style="display:none"*@>
-                       
-     
-                            @Html.EditorFor(model => model.Order.receive_address, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入地址" } })
-                            @Html.ValidationMessageFor(model => model.Order.receive_address, "", new { @class = "text-danger" })
-                        
-                    </div>
-
-
-
-                    @*========================================*@
-
-                    <div id="orderDetail">
+                    <div class="mb-2" id="orderDetail">
                         @Html.Partial("_PartialOrderBox")
                     </div>
+                    <div  class="mb-2"  id="table" style="display:none">
 
-                    <div class="creat_account">
-                        <input type="checkbox" id="f-option4" name="selector" />
-                        <label for="f-option4">I’ve read and accept the </label>
-                        <a href="#">terms & conditions*</a>
+                        @Html.EditorFor(model => model.Order.table_no, new { htmlAttributes = new { @class = "form-control", placeholder = "桌號" } })
+                        @Html.ValidationMessageFor(model => model.Order.table_no, "", new { @class = "text-danger" })
+
                     </div>
-                    <a class="btn_3" href="#">Proceed to Paypal</a>
+
+                    <div  class="mb-2" id="ordertime" style="display:none">
+
+                        @Html.EditorFor(model => model.Order.SchedulOrderTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = "預約取餐時間" } })
+                        @Html.ValidationMessageFor(model => model.Order.SchedulOrderTime, "", new { @class = "text-danger" })
+
+
+
+                    </div>
+
+                    <div id="addr" style="display:none">
+
+
+                        @Html.EditorFor(model => model.Order.receive_address, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入地址" } })
+                        @Html.ValidationMessageFor(model => model.Order.receive_address, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    @*<a class="btn_3" href="#">Proceed to Paypal</a>*@
+                    <input type="submit" value="確認付款" class="btn_3" />
                 </div>
                 }
-
-
-
-
-
-
-
 
 
             </div>
@@ -243,9 +218,13 @@
             $('.item_confirm').on('click', function () {
                 var id = $(this).closest(".item_prod_no").attr("id");
            
+                //讀不到
+                //var qty = $(this).closest(".custom-select").val();
+                //alert(qty);
 
-                var qty = $(this).closest(".custom-select-demo").val();
-                alert(qty);
+                //讀不到
+                //var property = $(this).closest(".form-check-input:checked").val();
+                //alert(property);
                 AddToCart(id);
                 $(".modal").modal('hide');
                
@@ -271,7 +250,10 @@
     $("input[type=radio][name = mealService]").change(function () {
         console.log('aa')
         var mealno = $(this).val();
+        
         console.log(mealno)
+
+
         if (mealno == "A") {
             $('#table').show()
             $('#ordertime').hide()
