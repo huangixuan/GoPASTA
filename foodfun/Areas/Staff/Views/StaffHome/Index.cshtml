@@ -57,6 +57,38 @@
                                 </h3>
                                 <span>@Html.DisplayFor(modelItem => item.price_sale)</span>
 
+                                                        <div class="form-check form-check-inline">
+                                                            @{
+                                                                List<string> prop_values = Shop.GetProductPropertyValue(item1.Value).Split('/').ToList();
+                                                                foreach (var value in prop_values)
+                                                                {
+                                                                    @Html.RadioButton(@item1.Value, @value, new { @class = "form-check-input" })
+                                                                    @Html.Label(item1.Value, @value, new { @class = "form-check-label" })
+
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+
+                                        <select class="qty-select">
+                                            @for (int i = 1; i <= item.stock_qty; i++)
+                                            {
+
+                                            }
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-primary">確定</button>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -138,6 +170,10 @@
 
 
                         </div>
+                        @*======================*@
+
+
+                    </div>
                     }
 
                 </div>
@@ -273,7 +309,7 @@
 
         }
 
-    })
+        })
 
 
     </script>
