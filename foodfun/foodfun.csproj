@@ -170,6 +170,12 @@
     <Compile Include="Models\Categorys.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>GoPASTA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Concepts.cs">
+      <DependentUpon>GoPASTA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Data\Carts\CartTemp.cs" />
     <Compile Include="Models\GoPASTA.Context.cs">
       <AutoGen>True</AutoGen>
@@ -212,6 +218,9 @@
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductsProperty.cs">
+      <DependentUpon>GoPASTA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Profiles.cs">
       <DependentUpon>GoPASTA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProgramList.cs">
