@@ -67,5 +67,13 @@ namespace foodfun.Areas.Staff.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult Index(FormCollection collection)
+        {
+
+            return View();
+        
+        }
+
     }
 }
